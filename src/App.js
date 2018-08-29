@@ -12,7 +12,14 @@ class App extends Component {
         <Layout>
           <Switch>
             <Route exact path='/' component={Home}/>
-            <Redirect from ='*' to='/'/>
+            <Route path='/user_parents' component={Home}/>
+            <Route path='/user_teachers' component={Home}/>
+            <Route path='/user_register' component={Home}/>
+            <Route path='/school' component={Home}/>
+            <Route path='/class' component={Home}/>
+            <Route path='/services' component={Home}/>
+            <Route path='/order' component={Home}/>
+            <Route path='/region' component={Home}/>
           </Switch>
         </Layout>
       </BrowserRouter>

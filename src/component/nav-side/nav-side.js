@@ -12,71 +12,71 @@ class NavSide extends React.Component{
               <ul className="nav" id="main-menu">
 
                   <li>
-                      <NavLink activeClassName='active-menu' to="/">
+                      <NavLink exact activeClassName='active-menu' to="/">
                       <i className="fa fa-dashboard"></i>
                        <span>首页</span></NavLink>
                   </li>
                   <li className='active'>
-                      <Link to="/">
+                      <Link to="/user_parents">
                       <i className="fa fa-user"></i>
                        <span>用户</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <Link to="/">家长管理</Link>
+                              <NavLink activeClassName='active-menu' to="/user_parents">家长管理</NavLink>
                           </li>
                           <li>
-                              <Link to="/">老师管理</Link>
+                              <NavLink activeClassName='active-menu' to="/user_teachers">老师管理</NavLink>
                           </li>
                           <li>
-                              <Link to="/">老师注册管理</Link>
+                              <NavLink activeClassName='active-menu' to="/user_register">老师注册管理</NavLink>
                           </li>
                       </ul>
                   </li>
                   <li className='active'>
-                      <Link to="/">
+                      <Link to="/school">
                       <i className="fa fa-list"></i>
                        <span>学校</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <Link to="/">学校管理</Link>
+                              <NavLink activeClassName='active-menu' to="/school">学校管理</NavLink>
                           </li>
                           <li>
-                              <Link to="/">班级管理</Link>
+                              <NavLink activeClassName='active-menu' to="/class">班级管理</NavLink>
                           </li>
                       </ul>
                   </li>
                   <li className='active'>
-                      <Link to="/">
+                      <Link to="/services">
                       <i className="fa fa-list"></i>
                        <span>服务</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <Link to="/">服务项目管理</Link>
+                              <NavLink activeClassName='active-menu' to="/services">服务项目管理</NavLink>
                           </li>
                       </ul>
                   </li>
                   <li className='active'>
-                      <Link to="/">
+                      <Link to="/order">
                       <i className="fa fa-check-square-o fa-fw"></i>
                        <span>订单</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <Link to="/">订单管理</Link>
+                              <NavLink activeClassName='active-menu' to="/order">订单管理</NavLink>
                           </li>
                       </ul>
                   </li>
                   <li className='active'>
-                      <Link to="/">
+                      <Link to="/region">
                       <i className="fa fa-list"></i>
                        <span>地区</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <Link to="/">地址管理</Link>
+                              <NavLink activeClassName='active-menu' to="/region">地址管理</NavLink>
                           </li>
                       </ul>
                   </li>
