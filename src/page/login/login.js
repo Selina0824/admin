@@ -11,8 +11,11 @@ class Login extends Component{
     this.state={
       username:'',
       password:'',
-      redirect: _util.getUrlParam('redirect') || ''
+      redirect: _util.getUrlParam('redirect') || '/'
     }
+  }
+  componentWillMount(){
+    document.title = '登录 — 亲子到家管理系统'
   }
   onInputChange(e){
     let inputName = e.target.name;
@@ -21,15 +24,28 @@ class Login extends Component{
       [inputName]:inputValue
     });
   }
+  onInputKeyup(e){
+    if(e.keyCode === 13){
+        this.onSubmit(e);
+    }
+}
   onSubmit(e){
-    _admin.login({
-      username:this.state.username,
+    let loginInfo = {
+      username: this.state.username,
       password: this.state.password
-    }).then(res=>{
-      this.props.history.push(this.state.redirect);
-    },err=> {
-      _util.errorTips(err)
-    })
+  };
+  let checkResult = _admin.checkLoginInfo(loginInfo);
+  if(checkResult.status){
+      _admin.login(loginInfo).then((res) => {
+          _util.setStorage('userInfo', res);
+          // 登陆成功，跳转页面
+          this.props.history.push(this.state.redirect);
+      }, (errMsg) => {
+          _util.errorTips(errMsg);
+      });
+  }else{
+      _util.errorTips(checkResult.msg);
+  }
   }
   render(){
     return (
@@ -47,6 +63,7 @@ class Login extends Component{
                     name="username" 
                     autoComplete="off"
                     onChange = {e=>this.onInputChange(e)} 
+                    onKeyUp = {e => this.onInputKeyup(e)}
                   />
                 </div>
                 <div className="form-group">
@@ -55,6 +72,7 @@ class Login extends Component{
                     placeholder="请输入密码" 
                     name="password" 
                     onChange = {e=>this.onInputChange(e)} 
+                    onKeyUp = {e => this.onInputKeyup(e)}
                   />
                 </div>
                 <button type="submit" 

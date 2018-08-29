@@ -5,7 +5,7 @@ class UserTeacher extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '首页'>
+        <Title title = '老师管理'>
           <button></button>
         </Title>
         <div className='row'>

@@ -14,6 +14,7 @@ import Order from './page/order/order';
 import ServiceAdmin from './page/service-admin/service-admin';
 import Address from './page/address/address';
 import Login from './page/login/login';
+import ErrorPage from './page/error-page/error-page';
 
 class App extends Component {
   render() {
@@ -34,6 +35,7 @@ class App extends Component {
                 <Route path='/services' component={ServiceAdmin}/>
                 <Route path='/order' component={Order}/>
                 <Route path='/region' component={Address}/>
+                <Route component={ErrorPage}/>
               </Switch>
             </Layout>
           )

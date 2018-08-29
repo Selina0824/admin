@@ -42,7 +42,7 @@ class Util {
   }
   // 错误提示
   errorTips(errMsg) {
-    alert(errMsg || 'something wrong');
+    alert(errMsg || '请求失败');
   }
   // 错误提示
   successTips(successMsg) {
