@@ -27,14 +27,24 @@ class App extends Component {
             <Layout>
               <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/user_parents' component={UserParents}/>
-                <Route path='/user_teachers' component={UserTeacher}/>
-                <Route path='/user_register' component={UserTeacherRegister}/>
-                <Route path='/school' component={School}/>
-                <Route path='/class' component={Clazz}/>
-                <Route path='/services' component={ServiceAdmin}/>
-                <Route path='/order' component={Order}/>
-                <Route path='/region' component={Address}/>
+
+                <Route path='/user/parents' component={UserParents}/>
+                <Redirect exact from='/user' to = '/user/parents'/>
+                <Route path='/user/teachers' component={UserTeacher}/>
+                <Route path='/user/register' component={UserTeacherRegister}/>
+
+                <Route path='/schooladmin/school' component={School}/>
+                <Route path='/schooladmin/class' component={Clazz}/>
+                <Redirect exact from='/schooladmin' to = '/schooladmin/school'/>
+
+                <Route path='/services/items' component={ServiceAdmin}/>
+                <Redirect exact from='/services' to = '/services/items'/>
+
+                <Route path='/order/order-list' component={Order}/>
+                <Redirect exact from='/order' to = '/order/order-list'/>
+
+                <Route path='/region/address' component={Address}/>
+                <Redirect exact from='/region' to = '/region/address'/>
                 <Route component={ErrorPage}/>
               </Switch>
             </Layout>

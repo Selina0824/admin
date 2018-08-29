@@ -17,33 +17,33 @@ class NavSide extends React.Component{
                        <span>首页</span></NavLink>
                   </li>
                   <li className='active'>
-                      <Link to="/user_parents">
+                      <Link to="/user">
                       <i className="fa fa-user"></i>
                        <span>用户</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/user_parents">家长管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/user/parents">家长管理</NavLink>
                           </li>
                           <li>
-                              <NavLink activeClassName='active-menu' to="/user_teachers">老师管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/user/teachers">老师管理</NavLink>
                           </li>
                           <li>
-                              <NavLink activeClassName='active-menu' to="/user_register">老师注册管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/user/register">老师注册管理</NavLink>
                           </li>
                       </ul>
                   </li>
                   <li className='active'>
-                      <Link to="/school">
+                      <Link to="/schooladmin">
                       <i className="fa fa-building"></i>
                        <span>学校</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/school">学校管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/schooladmin/school">学校管理</NavLink>
                           </li>
                           <li>
-                              <NavLink activeClassName='active-menu' to="/class">班级管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/schooladmin/class">班级管理</NavLink>
                           </li>
                       </ul>
                   </li>
@@ -54,7 +54,7 @@ class NavSide extends React.Component{
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/services">服务项目管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/services/items">服务项目管理</NavLink>
                           </li>
                       </ul>
                   </li>
@@ -65,7 +65,7 @@ class NavSide extends React.Component{
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/order">订单管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/order/order-list">订单管理</NavLink>
                           </li>
                       </ul>
                   </li>
@@ -76,7 +76,7 @@ class NavSide extends React.Component{
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/region">地址管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/region/address">地址管理</NavLink>
                           </li>
                       </ul>
                   </li>
