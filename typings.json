@@ -1,5 +1,6 @@
 {
   "globalDependencies": {
+    "jquery": "registry:dt/jquery#1.10.0+20170310222111",
     "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651"
   }
 }
