@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
 class Title extends Component {
-  constructor(props){
-    super(props)
-  }
+  // constructor(props){
+  //   super(props)
+  // }
   componentWillMount(){
     document.title = this.props.title + '- 亲子到家';
   }

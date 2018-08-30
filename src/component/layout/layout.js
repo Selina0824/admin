@@ -4,9 +4,9 @@ import NavTop from '../nav-top/nav-top';
 import NavSide from '../nav-side/nav-side';
 
 class Layout extends Component {
-  constructor(props){
-    super(props);
-  }
+  // constructor(props){
+  //   super(props);
+  // }
   render(){
     return (
       <div id='wrapper'>

@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 class NavSide extends React.Component{
-    constructor(props){
-            super(props);
-    };
+    // constructor(props){
+    //         super(props);
+    // };
     render(){
         return (
           <div className="navbar-default navbar-side" role="navigation">

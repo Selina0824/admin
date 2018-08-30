@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Switch, Route, Redirect, Link} from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 
 import Layout from './component/layout/layout';
 import Home from './page/home/home';
@@ -17,38 +16,39 @@ import Login from './page/login/login';
 import ErrorPage from './page/error-page/error-page';
 
 class App extends Component {
+  layoutRouter = (
+    <Layout>
+      <Switch>
+        <Route exact path='/' component={Home}/>
+
+        <Route path='/user/parents' component={UserParents}/>
+        <Redirect exact from='/user' to = '/user/parents'/>
+        <Route path='/user/teachers' component={UserTeacher}/>
+        <Route path='/user/register' component={UserTeacherRegister}/>
+
+        <Route path='/schooladmin/school' component={School}/>
+        <Route path='/schooladmin/class' component={Clazz}/>
+        <Redirect exact from='/schooladmin' to = '/schooladmin/school'/>
+
+        <Route path='/services/items' component={ServiceAdmin}/>
+        <Redirect exact from='/services' to = '/services/items'/>
+
+        <Route path='/order/order-list' component={Order}/>
+        <Redirect exact from='/order' to = '/order/order-list'/>
+
+        <Route path='/region/address' component={Address}/>
+        <Redirect exact from='/region' to = '/region/address'/>
+        <Route component={ErrorPage}/>
+      </Switch>
+    </Layout>
+  );
   render() {
     return (
       <BrowserRouter>
         <Switch>
         <Route path='/login' component={Login}/>
         <Route path='/' render = {
-          props => (
-            <Layout>
-              <Switch>
-                <Route exact path='/' component={Home}/>
-
-                <Route path='/user/parents' component={UserParents}/>
-                <Redirect exact from='/user' to = '/user/parents'/>
-                <Route path='/user/teachers' component={UserTeacher}/>
-                <Route path='/user/register' component={UserTeacherRegister}/>
-
-                <Route path='/schooladmin/school' component={School}/>
-                <Route path='/schooladmin/class' component={Clazz}/>
-                <Redirect exact from='/schooladmin' to = '/schooladmin/school'/>
-
-                <Route path='/services/items' component={ServiceAdmin}/>
-                <Redirect exact from='/services' to = '/services/items'/>
-
-                <Route path='/order/order-list' component={Order}/>
-                <Redirect exact from='/order' to = '/order/order-list'/>
-
-                <Route path='/region/address' component={Address}/>
-                <Redirect exact from='/region' to = '/region/address'/>
-                <Route component={ErrorPage}/>
-              </Switch>
-            </Layout>
-          )
+          props => this.layoutRouter
         }/>
         </Switch>
       </BrowserRouter>

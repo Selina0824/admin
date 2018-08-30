@@ -3,9 +3,9 @@ import Title from '../../component/page-title/title';
 import {Link} from 'react-router-dom';
 
 class ErrorPage extends Component{
-    constructor(props){
-        super(props);
-    }
+    // constructor(props){
+    //     super(props);
+    // }
     render(){
         return(
             <div id='page-wrapper'>
