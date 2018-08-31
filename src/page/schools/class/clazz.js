@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Title from '../../component/page-title/title';
+import Title from '../../../component/page-title/title';
 
-class ServiceAdmin extends Component{
+class Clazz extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '订单管理'>
+        <Title title = '班级管理'>
           <button></button>
         </Title>
         <div className='row'>
@@ -17,4 +17,4 @@ class ServiceAdmin extends Component{
   }
 }
 
-export default ServiceAdmin;
+export default Clazz;

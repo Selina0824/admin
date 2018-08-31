@@ -1,40 +1,47 @@
 import React, {Component} from 'react';
 import Title from '../../../component/page-title/title';
-// import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Pagination from '../../../util/pagnination/pagnination';
+import TableList from '../../../component/table-list/table-list';
 import Util from '../../../util/util';
-import UserService from '../../../service/user.service';
+import UserService from '../user.service';
+import Search from '../../../component/list-search/list-search'
+import '../../../App.css';
 
 const _userService = new UserService();
 const _util = new Util();
-
 
 class UserParents extends Component{
   constructor(props){
     super(props);
     this.state= {
-      list:[],
+      data:[],
       pageNum:1,
-      firstLoading:true
+      listType:'list'
     }
   }
 
   componentDidMount(){
-    this.loadParentsList(this.state.pageNum);
+    this.loadParentsList();
   }
-  loadParentsList(pageNum){
-    _userService.getParentsList(pageNum).then(res => {
-      this.setState(res);()=>{
-        this.setState({
-          firstLoading:false
-        })
-      }
+  loadParentsList(){
+    _userService.getParentsList(this.state.pageNum).then(res => {
+      this.setState(res);
     }, err=> {
       this.setState({
-        list:[]
+        data:[]
       })
       _util.errorTips(err);
     })
+  }
+  onSearch(searchType,searchKeyword){
+    let listType = searchKeyword === ''? 'list':'search';
+    this.setState({
+      listType:listType,
+      pageNum:1,
+      searchType,
+      searchKeyword
+    },this.loadParentsList())
   }
   /** 
    * 页数发生改变时执行
@@ -46,49 +53,55 @@ class UserParents extends Component{
       this.loadParentsList(pageNum);
     })
   }
+  deleteUser(id){
+    if(window.confirm(`确定要删除 ${id} 吗？`)){
+      console.log('delete user '+ id)
+    }
+  }
   render(){
-    let listBody = this.state.list.map((user,index)=> {
-      return (
-        <tr key={index}>
-            <td>{user.id}</td>
-            <td>{user.username}</td>
-            <td>{user.username}</td>
-            <td>{user.username}</td>
-            <td>{user.username}</td>
-            <td>{user.phone}</td>
-            <td>{new Date(user.createTime).toLocaleString()}</td>
-            <td></td>
-        </tr>
-      )
-    });
-    let listError = (
-      <tr >
-        <td colspan='8' style={{textAlign:'center'}}>{this.state.firstLoading?'正在加载数据 。。。':'没有找到相应的结果~'}</td>
-      </tr>
-    )
-    let tableBody = this.state.list.length>0?listBody:listError;
+    let tableHeads = [
+      {name:'ID', width:'5%'},
+      {name:'家长姓名', width:'10%'},
+      {name:'孩子姓名', width:'10%'},
+      {name:'所在学校', width:'15%'},
+      {name:'所在班级', width:'15%'},
+      {name:'电话', width:'15%'},
+      {name:'注册时间', width:'15%'},
+      {name:'操作', width:'15%'}
+    ]
     return (
       <div id='page-wrapper'>
-        <Title title = '家长管理'></Title>
-        <div className="row">
-          <div className="table-wrap col-md-12">
-            <table className="table table-striped table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>家长姓名</th>
-                  <th>孩子姓名</th>
-                  <th>所在学校</th>
-                  <th>所在班级</th>
-                  <th>电话</th>
-                  <th>注册时间</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody>{tableBody}</tbody>
-            </table>
+        <Title title = '家长管理'>
+        <div className='page-header-right'>
+            <Link to='/user/parents/add' className='btn btn-primary'>
+              <i className='fa fa-plus'/>
+              <span> 添加家长</span>
+            </Link>
           </div>
-        </div>
+        </Title>
+        <Search onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}}/>
+        <TableList tableHeads = {tableHeads}>
+          {
+            this.state.data.map((user,index)=> {
+              return (
+                <tr key={index}>
+                    <td>{user.id}</td>
+                    <td>{user.username}</td>
+                    <td>{user.childname}</td>
+                    <td>待填写</td>
+                    <td>{user.clazz}</td>
+                    <td>{user.phone}</td>
+                    <td>{new Date().toLocaleString()}</td>
+                    <td>
+                      <Link className='operator' to={`/user/parents/detail/${user.id}`}>详情 </Link>
+                      <Link className='operator' to={`/user/parents/edit/${user.id}`}> 编辑</Link>
+                      <button className='btn btn-primary ' onClick={(e)=>{this.deleteUser(user.id)}}>删除</button>
+                    </td>
+                </tr>
+              )
+            })
+          }
+        </TableList>
         <Pagination current = {this.state.pageNum} 
           total={this.state.total} 
           onChange={(pageNum)=>this.onPageNumChange(pageNum)}/>

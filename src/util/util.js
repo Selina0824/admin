@@ -2,27 +2,27 @@ import $ from 'jquery';
 class Util {
   request(param) {
     return new Promise((resolve, reject) => {
+      // let access_token = this.getStorage('userInfo').access_token;
+      let access_token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2NsYXNzX3R5cGUiOjAsInVzZXJfaWQiOjEsInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsidWkiXSwidXNlcl9yb2xlcyI6WyJhZG1pbiJdLCJleHAiOjE1MzU3MjQ2MjMsImF1dGhvcml0aWVzIjpbIlJFUzpSRVM6UiIsIkFDQzpDT046QyIsIkFDQzpDT046RCIsIlJFUzpSRVM6RCIsIlJFUzpSRVM6QyIsIlNFUjpBREQ6UiIsIkFDQzpBQ0M6UiIsIlNFUjpBREQ6RCIsIlNFUjpBREQ6QyIsIkFDQzpBQ0M6VSIsIlJFRzpSRUc6QyIsIkFDQzpWQUw6UiIsIkFDQzpURUE6UiIsIkFDQzpBVEU6QyIsIkFDQzpDTEE6VSIsIkFDQzpWQUw6VSIsIkFDQzpURUE6RCIsIkFDQzpURUE6QyIsIkFDQzpDTEE6UiIsIlJFRzpSRUc6RCIsIkFDQzpBQ0M6QyIsIlNFUjpBREQ6VSIsIkFDQzpDTEE6RCIsIkFDQzpDTEE6QyIsIkFDQzpDT046VSIsIkFDQzpURUE6VSIsIlJFUzpSRVM6VSIsIkFDQzpDT046UiIsIkFDQzpTQ0g6VSIsIkFDQzpST0w6VSIsIkFDQzpVU0U6RCIsIkFDQzpSRUc6RCIsIkFDQzpMT0c6RCIsIkFDQzpMT0c6QyIsIkFDQzpVU0U6QyIsIlNFUjpJVEU6QyIsIlNFUjpTVE86RCIsIkFDQzpTQ0g6UiIsIlNFUjpTVE86QyIsIlNFUjpJVEU6RCIsIlJFRzpSRUc6UiIsIkFDQzpST0w6RCIsIkFDQzpTQ0g6QyIsIkFDQzpTQ0g6RCIsIkFDQzpBVVQ6RCIsIkFDQzpBVVQ6QyIsIkFDQzpWQUw6RCIsIkFDQzpBVVQ6UiIsIkFDQzpSRUc6VSIsIkFDQzpST0w6UiIsIlNFUjpJVEU6UiIsIlJFRzpSRUc6VSIsIkFDQzpSRUc6UiIsIlNFUjpJVEU6VSIsIkFDQzpBVVQ6VSIsIkFDQzpST0w6QyIsIkFDQzpVU0U6VSIsIkFDQzpVU0U6UiIsIkFDQzpVU0M6UiIsIkFDQzpMT0c6VSIsIlNFUjpTVE86VSIsIlNFUjpTVE86UiIsIkFDQzpMT0c6UiJdLCJqdGkiOiI1NzVlZGU5NS0wYjg4LTRjOGItOTk2MC1mMDEzOTMzM2UxNzMiLCJjbGllbnRfaWQiOiJicm93c2VyIn0.UHBfVPKQyFbyTNbZtJ-XmbjJn66w-bF5MRB51s6dTAHYF-HtfvSCl5RaYwjOZgJFDyuOp9Y8-8GwPes0PxYC1de_0Oyuzfv8twWsmViPOLOSNa4rrp2B4wCTaKpnh9OUTEoK9xU40OPXYju-bs-jRS2VvGrktu6Kc5nakSKyEEYaon7sLhN9YpwjqT06hJqUKDs_sOldDCU4VlDZspVJvj_1xc9Q7JKVXmE-4gGtBfW7N304zG-MHQ0f7sF79YDZ8C7aeeQj6N1L2ZnzICGuPTNj8bI-ABqjT1VwgYmBBfRDIaZNIGqFwyg8BImlQE81XCrw83kitW-MhA78IBfb_w';
       $.ajax({
         type: param.type || 'get',
         url: param.url || '',
         dataType: param.dataType || 'json',
         data: param.data || null,
+        beforeSend: function(request) {
+            request.setRequestHeader("Authorization", `Bearer ${access_token}`);
+        },
         success: res => {
           // 数据请求成功
-          if (0 === res.status) {
-            typeof resolve === 'function' && resolve(res.data, res.msg);
-          }
-          // 未登录状态,强制去登陆
-          else if (10 === res.status) {
-            this.doLogin();
-          }
-          // 错误
-          else {
-            typeof reject === 'function' && reject(res.msg);
-          }
+          typeof resolve === 'function' && resolve(res);
         },
         error: err => {
-          typeof reject === 'function' && reject(err.statusText);
+          // 未登录状态,强制去登陆
+          if (401=== err.status) {
+            this.doLogin();
+          } else {
+            typeof reject === 'function' && reject(err.message);
+          }
         }
       });
     });

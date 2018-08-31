@@ -32,20 +32,22 @@ class Login extends Component{
   onSubmit(e){
     let loginInfo = {
       username: this.state.username,
-      password: this.state.password
-  };
-  let checkResult = _admin.checkLoginInfo(loginInfo);
-  if(checkResult.status){
-      _admin.login(loginInfo).then((res) => {
-          _util.setStorage('userInfo', res);
-          // 登陆成功，跳转页面
-          this.props.history.push(this.state.redirect);
-      }, (errMsg) => {
-          _util.errorTips(errMsg);
-      });
-  }else{
-      _util.errorTips(checkResult.msg);
-  }
+      password: this.state.password,
+      scope:'ui',
+      'grant_type':'password'
+    };
+    let checkResult = _admin.checkLoginInfo(loginInfo);
+    if(checkResult.status){
+        _admin.login(loginInfo).then((res) => {
+            _util.setStorage('userInfo', res);
+            // 登陆成功，跳转页面
+            this.props.history.push(this.state.redirect);
+        }, () => {
+            _util.errorTips('用户名或密码错误，请重新登录。');
+        });
+    }else{
+        _util.errorTips(checkResult.msg);
+    }
   }
   render(){
     return (

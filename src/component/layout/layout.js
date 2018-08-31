@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './theme.css';
+import './style.css';
 import NavTop from '../nav-top/nav-top';
 import NavSide from '../nav-side/nav-side';
 

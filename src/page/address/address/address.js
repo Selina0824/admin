@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import Title from '../../component/page-title/title';
+import Title from '../../../component/page-title/title';
 
-class School extends Component{
+class Address extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '学校管理'>
-          <button></button>
+        <Title title = '地址管理'>
+
         </Title>
         <div className='row'>
           <div className='col-md-12'>
@@ -17,4 +17,4 @@ class School extends Component{
   }
 }
 
-export default School;
+export default Address;

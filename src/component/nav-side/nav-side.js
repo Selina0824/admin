@@ -34,16 +34,16 @@ class NavSide extends React.Component{
                       </ul>
                   </li>
                   <li className='active'>
-                      <Link to="/schooladmin">
+                      <Link to="/school">
                       <i className="fa fa-building"></i>
                        <span>学校</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/schooladmin/school">学校管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/school/school-list">学校管理</NavLink>
                           </li>
                           <li>
-                              <NavLink activeClassName='active-menu' to="/schooladmin/class">班级管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/school/class-list">班级管理</NavLink>
                           </li>
                       </ul>
                   </li>
@@ -54,7 +54,7 @@ class NavSide extends React.Component{
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/services/items">服务项目管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/services/items">服务管理</NavLink>
                           </li>
                       </ul>
                   </li>
@@ -72,11 +72,14 @@ class NavSide extends React.Component{
                   <li className='active'>
                       <Link to="/region">
                       <i className="fa fa-map-marker"></i>
-                       <span>地区</span>
+                       <span>地址</span>
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/region/address">地址管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/region/region-list">地区管理</NavLink>
+                          </li>
+                          <li>
+                              <NavLink activeClassName='active-menu' to="/region/address-list">地址管理</NavLink>
                           </li>
                       </ul>
                   </li>
