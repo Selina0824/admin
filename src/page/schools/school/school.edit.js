@@ -134,13 +134,14 @@ class SchoolEdit extends Component{
             <div className="form-horizontal">
               <div className="form-group">
                 <label htmlFor="parentName" className="col-md-2 control-label">学校名称</label>
-                <div className="col-md-5">
+                <div className="col-md-4">
                   <input type="text" 
                     className="form-control" 
                     value={this.state.name}
                     placeholder="请输入学校名称" 
                     onChange = {e=>this.onInputChange(e)}/>
                 </div>
+                <div className="col-md-1 required-input">*</div>
               </div>
               <div className="form-group">
                 <label  className="col-md-2 control-label">所属地区</label>

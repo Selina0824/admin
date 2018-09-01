@@ -28,3 +28,11 @@
 .operator{
   margin-right: 20px;
 }
+.required-input{
+  color: green;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 40px;
+  margin-left:-10px;
+  padding-left: 0;
+}

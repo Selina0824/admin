@@ -159,7 +159,7 @@ class RegionSelector extends Component{
   render (){
     return (
       <div className="col-md-10">
-        <select className="form-control cate-select" 
+        <select className="form-control col-md-1 cate-select" 
           disabled = {this.props.readOnly === '2'} 
           value = {this.state.firstRegionId}
           onChange = {(e)=>{this.onFirstRegionChange(e)}}>
@@ -171,7 +171,7 @@ class RegionSelector extends Component{
             }
         </select>
         {this.state.secondRegionList.length?(
-          <select className="form-control cate-select" 
+          <select className="form-control col-md-1 cate-select" 
             disabled= {this.props.readOnly === '2'} 
             value = {this.state.secondRegionId}
             onChange = {(e)=>{this.onSecondRegionChange(e)}}>
@@ -186,7 +186,7 @@ class RegionSelector extends Component{
         }
         {
           this.state.thirdRegionList.length?(
-            <select className="form-control cate-select" 
+            <select className="form-control col-md-1 cate-select" 
             disabled = {this.props.readOnly === '2'} 
             value = {this.state.thirdRegionId}
             onChange = {(e)=>{this.onThirdRegionChange(e)}}>
@@ -199,6 +199,7 @@ class RegionSelector extends Component{
             </select>
           ):null
         }
+        <div className="col-md-1 required-input">*</div>
       </div>
     )
   }

@@ -6,7 +6,7 @@ import Util from '../../util/util';
 const _schoolService  = new SchoolService();
 const _util = new Util();
 
-class SchoolSelector extends Component{
+class ClassSelector extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -22,34 +22,15 @@ class SchoolSelector extends Component{
   componentWillReceiveProps(nextProps){
     let schoolIdChange = this.state.schoolId !== nextProps.schoolId;
     let clazzIdChange = this.state.clazzId !== nextProps.clazzId;
-    
-    // 如果只有两级地区
-    if(nextProps.thirdRegionId == 0){
-      //数据没有发生变化
-      if(!firstRegionIdChange && !secondRegionIdChange){
-        return;
-      }
-      this.setState({
-        firstRegionId:nextProps.firstRegionId,
-        secondRegionId: nextProps.secondRegionId,
-        thirdRegionId : ''
-      },()=>{
-         this.loadSecondRegionList();
-      })
-    } else{
-      if(!firstRegionIdChange && !secondRegionIdChange && !thirdRegionIdChange){
-        return;
-      }
-      //有三级区域
-      this.setState({
-        firstRegionId:nextProps.firstRegionId,
-        secondRegionId: nextProps.secondRegionId,
-        thirdRegionId : nextProps.thirdRegionId
-      },()=>{
-        this.loadSecondRegionList();
-        this.loadThirdRegionList();
-      })
+    if(!schoolIdChange && !clazzIdChange){
+      return;
     }
+    this.setState({
+      schoolId:nextProps.schoolId,
+      clazzId: nextProps.clazzId
+    },()=>{
+       this.loadClazzList();
+    })
   }
   //加载学校列表
   loadSchoolList(){
@@ -59,7 +40,7 @@ class SchoolSelector extends Component{
       size: 10000,
       listType:listType,
       searchType:'regionId',
-      searchKeyword:Tthis.props.regionId
+      searchKeyword:this.props.regionId
     }
     _schoolService.getSchoolList(listParam).then(res=>{
       this.setState({
@@ -69,11 +50,14 @@ class SchoolSelector extends Component{
       _util.errorTips(err)
     })
   }
-  //加载学校
+  //加载班级列表
   loadClazzList(){
     let listParam = {
+      listType:'search',
       size:10000,
-      id:this.state.schoolId
+      searchType:'schoolId',
+      pageNum:1,
+      searchKeyword:this.state.schoolId
     }
    _schoolService.getClazzList(listParam).then(res=>{
       this.setState({
@@ -98,7 +82,7 @@ class SchoolSelector extends Component{
       })
     }
   }
-   //选择二级地区
+   //选择班级
   onClazzChange(e){
     if(e.target.value){
       let newId  = e.target.value;
@@ -125,7 +109,7 @@ class SchoolSelector extends Component{
   render (){
     return (
       <div className="col-md-10">
-        <select className="form-control cate-select" 
+        <select className="form-control col-md-4 cate-select-school" 
           disabled = {this.props.readOnly === '2'} 
           value = {this.state.schoolId}
           onChange = {(e)=>{this.onSchoolChange(e)}}>
@@ -137,7 +121,7 @@ class SchoolSelector extends Component{
             }
         </select>
         {this.state.clazzList.length?(
-          <select className="form-control cate-select" 
+          <select className="form-control col-md-4 cate-select-school" 
             disabled= {this.props.readOnly === '2'} 
             value = {this.state.clazzId}
             onChange = {(e)=>{this.onClazzChange(e)}}>
@@ -150,9 +134,12 @@ class SchoolSelector extends Component{
           </select>
         ):null
         }
+        {
+          this.props.readOnly === '2'? null:<div className="col-md-1 required-input">*</div>
+        }
       </div>
     )
   }
 }
 
-export default SchoolSelector;
+export default ClassSelector;

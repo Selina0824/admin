@@ -92,7 +92,7 @@ class ClazzEdit extends Component{
             <div className="form-horizontal">
               <div className="form-group">
                 <label htmlFor="parentName" className="col-md-2 control-label">班级名称</label>
-                <div className="col-md-5">
+                <div className="col-md-3">
                   <input type="text" 
                     className="form-control" 
                     value={this.state.name}

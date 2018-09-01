@@ -65,7 +65,7 @@ class SchoolSelector extends Component{
   render (){
     return (
       <div className="col-md-10">
-        <select className="form-control cate-select-school" 
+        <select className="form-control col-md-4 cate-select-school" 
           disabled = {this.props.readOnly === '2'} 
           value = {this.state.schoolId}
           onChange = {(e)=>{this.onSchoolChange(e)}}>
@@ -76,6 +76,7 @@ class SchoolSelector extends Component{
               )
             }
         </select>
+        <div className="col-md-1 required-input">*</div>
       </div>
     )
   }

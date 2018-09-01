@@ -47,13 +47,13 @@ class ClazzDetail extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = {this.state.id?'班级管理 -- 编辑班级':'班级管理 -- 添加班级'}/>
+        <Title title = '班级详情'/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">
               <div className="form-group">
                 <label htmlFor="parentName" className="col-md-2 control-label">班级名称</label>
-                <div className="col-md-5">
+                <div className="col-md-3">
                   <input type="text" 
                     className="form-control" 
                     readOnly

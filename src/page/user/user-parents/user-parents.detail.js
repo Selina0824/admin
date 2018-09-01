@@ -9,7 +9,7 @@ const _userService = new UserService();
 const _util = new Util();
 
 
-class ParentsEdit extends Component{
+class ParentsDetail extends Component{
   constructor(props){
     super(props);
     this.state ={
@@ -52,66 +52,10 @@ class ParentsEdit extends Component{
       })
     }
   }
-  onSchoolChange(schoolId){
-    this.setState({
-        schoolId
-    })
-  }
-  onInputChange(e){
-    let inputValue = e.target.value;
-    this.setState({
-      name:inputValue
-    });
-  }
-  onSubmit(e){
-    let userInfo = {
-      name: this.state.name,
-      childName: this.state.childName,
-      clazzId: this.state.clazzId,
-      phone: this.state.phone,
-      idNum: this.state.idNum
-    };
-    let checkResult = _userService.checkParentsInfo(userInfo);
-    if(checkResult.status){
-      if(this.state.id){
-        userInfo = {
-          id: this.state.id,
-          ...userInfo
-        }
-        _userService.editParents(userInfo).then(res=>{
-          alert('编辑成功');
-          this.props.history.push('/user/parents');
-        },err=>_util.errorTips(err))
-      } else {
-        _userService.addParents(userInfo).then(res =>{
-          alert('添加成功');
-          this.props.history.push('/user/parents');
-        }, err => {
-          _util.errorTips(err);
-      })
-      }
-    }else{
-        _util.errorTips(checkResult.msg);
-    }
-  }
-  // 组件中学校或者班级发生变化时
-  onPropsChange(schoolId,clazzId){
-    this.setState({
-        schoolId,
-        clazzId
-    })
-  }
-  onInputChange(e){
-    let inputName = e.target.name;
-    let inputValue = e.target.value;
-    this.setState({
-      [inputName]:inputValue
-    });
-  }
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = {this.state.id?'家长管理 -- 编辑家长':'家长管理 -- 添加家长'}/>
+        <Title title = '家长管理 -- 家长详情'/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">
@@ -120,22 +64,19 @@ class ParentsEdit extends Component{
                 <div className="col-md-3">
                   <input type="text" 
                     className="form-control" 
-                    name="name" 
-                    onChange = {e=>this.onInputChange(e)}
-                    value={this.state.name}  
-                    placeholder="请输入家长姓名"/>
+                    name="name"
+                    readOnly 
+                    value={this.state.name}/>
                 </div>
-                <div className="col-md-1 required-input">*</div>
               </div>
               <div className="form-group">
                 <label htmlFor="idNum" className="col-md-2 control-label">身份证号码</label>
                 <div className="col-md-3">
                   <input type="text" 
                   className="form-control" 
-                  name="idNum" 
-                  value={this.state.idNum}
-                  placeholder="请输入身份证号码"
-                  onChange = {e=>this.onInputChange(e)} />
+                  name="idNum"
+                  readOnly 
+                  value={this.state.idNum}/>
                 </div>
               </div>
               <div className="form-group">
@@ -144,11 +85,9 @@ class ParentsEdit extends Component{
                   <input type="text" 
                     className="form-control" 
                     name="childName"
-                    value={this.state.childName} 
-                    placeholder="请输入孩子姓名"
-                    onChange = {e=>this.onInputChange(e)} />
+                    readOnly
+                    value={this.state.childName}/>
                 </div>
-                <div className="col-md-1 required-input">*</div>
               </div>
               <div className="form-group">
                 <label htmlFor="phone" className="col-md-2 control-label">手机号码</label>
@@ -156,24 +95,14 @@ class ParentsEdit extends Component{
                   <input type="text" 
                     className="form-control" 
                     name="phone"
-                    value={this.state.phone} 
-                    placeholder="请输入手机号码"
-                    onChange = {e=>this.onInputChange(e)} />
+                    readOnly
+                    value={this.state.phone}/>
                 </div>
-                <div className="col-md-1 required-input">*</div>
               </div>
               <div className="form-group">
                 <label  className="col-md-2 control-label">所在班级</label>
                 <ClassSelector clazzId = {this.state.clazzId} 
-                  schoolId = {this.state.schoolId}
-                  onPropsChange = {(schoolId,clazzId)=>{this.onPropsChange(schoolId,clazzId)}}/>
-              </div>
-              <div className="form-group">
-                <div className="col-md-offset-2 col-md-10">
-                  <button type="btn" 
-                    className="btn btn-xl btn-primary"
-                    onClick={e=>{this.onSubmit(e)}}>提交</button>
-                </div>
+                  schoolId = {this.state.schoolId} readOnly='2'/>
               </div>
             </div>
           </div>
@@ -183,5 +112,5 @@ class ParentsEdit extends Component{
   }
 }
 
-export default ParentsEdit;
+export default ParentsDetail;
 

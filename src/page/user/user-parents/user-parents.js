@@ -25,7 +25,16 @@ class UserParents extends Component{
     this.loadParentsList();
   }
   loadParentsList(){
-    _userService.getParentsList(this.state.pageNum).then(res => {
+    let listParam ={};
+    listParam.listType = this.state.listType;
+    listParam.pageNum = this.state.pageNum;
+    //如果是搜索，需要加入搜索类型和搜索关键字
+    if(this.state.listType ==='search'){
+      listParam.searchType = this.state.searchType;
+      listParam.searchKeyword = this.state.searchKeyword;
+    }
+    //请求接口
+    _userService.getParentsList(listParam).then(res => {
       this.setState(res);
     }, err=> {
       this.setState({
@@ -41,7 +50,9 @@ class UserParents extends Component{
       pageNum:1,
       searchType,
       searchKeyword
-    },this.loadParentsList())
+    },()=>{
+      this.loadParentsList();
+    })
   }
   /** 
    * 页数发生改变时执行
@@ -55,7 +66,9 @@ class UserParents extends Component{
   }
   deleteUser(id){
     if(window.confirm(`确定要删除 ${id} 吗？`)){
-      console.log('delete user '+ id)
+      _userService.deleteParents(id).then(res=>{
+        alert('删除成功')
+      },err=>_util.errorTips(err))
     }
   }
   render(){
@@ -86,10 +99,10 @@ class UserParents extends Component{
               return (
                 <tr key={index}>
                     <td>{user.id}</td>
-                    <td>{user.username}</td>
-                    <td>{user.childname}</td>
-                    <td>待填写</td>
-                    <td>{user.clazz}</td>
+                    <td>{user.name}</td>
+                    <td>{user.childName}</td>
+                    <td>{user.clazz.school.name}</td>
+                    <td>{user.clazz.name}</td>
                     <td>{user.phone}</td>
                     {/* <td>{new Date().toLocaleString()}</td> */}
                     <td>

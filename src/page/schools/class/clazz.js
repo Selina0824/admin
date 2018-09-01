@@ -26,7 +26,7 @@ class Clazz extends Component{
   componentDidMount(){
     this.loadClazzList();
   }
-  //加载服务项目列表
+  //加载班级列表
   loadClazzList(){
     let listParam ={};
     listParam.listType = this.state.listType;
