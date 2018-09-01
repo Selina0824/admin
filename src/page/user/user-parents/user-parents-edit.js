@@ -38,26 +38,6 @@ class ParentsEdit extends Component{
                 </div>
               </div>
               <div className="form-group">
-                <label  className="col-md-2 control-label">所在学校</label>
-                <div className="col-md-3">
-                  <select className="form-control cate-select col-md-5">
-                    <option value="">请选择学校</option>
-                    <option value="">漆凉铭幼儿园</option>
-                    <option value="100001">金太阳幼儿园</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
-                <label  className="col-md-2 control-label">所在班级</label>
-                <div className="col-md-3">
-                  <select className="form-control cate-select col-md-5">
-                    <option value="">请选择班级</option>
-                    <option value="">学前2班</option>
-                    <option value="100001">学前1班</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-group">
                 <div className="col-md-offset-2 col-md-10">
                   <button type="btn" className="btn btn-xl btn-primary">提交</button>
                 </div>

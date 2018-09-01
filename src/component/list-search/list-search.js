@@ -5,7 +5,7 @@ class Search extends Component {
   constructor(props){
     super(props);
     this.state ={
-      searchType:'productId',
+      searchType:'id',
       searchKeyword:''
     }
   }
@@ -34,8 +34,8 @@ class Search extends Component {
                   <select className="form-control"
                     name='searchType'
                     onChange = {(e)=>{this.onValueChange(e)}}>
-                    <option value="productId">按id查询</option>
-                    <option value="productName">按姓名查询</option>
+                    <option value="id">按id查询</option>
+                    <option value="nameLike">按名称查询</option>
                   </select>
                 </div>
               <div className="form-group">

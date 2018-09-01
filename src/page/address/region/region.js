@@ -118,7 +118,7 @@ class Region extends Component{
           }
         </TableList>
         <Pagination current = {this.state.start+1} 
-          total={Math.ceil(this.state.total/this.state.size)} 
+          total={this.state.total} 
           onChange={(pageNum)=>this.onPageNumChange(pageNum)}/>
       </div>
     )

@@ -25,7 +25,7 @@ class School extends Component{
   componentDidMount(){
     this.loadSchoolList();
   }
-  //加载服务项目列表
+  //加载学校列表
   loadSchoolList(){
     let listParam ={};
     listParam.listType = this.state.listType;
@@ -67,7 +67,7 @@ class School extends Component{
     })
   }
   deleteSchool(id){
-    if(window.confirm(`确定要删除 ${id} 吗？`)){
+    if(window.confirm(`确定要删除学校 ${id} 吗？`)){
       _schoolService.deleteSchool(id).then(res=>{
         alert('删除成功。')
         this.loadSchoolList();
@@ -103,7 +103,7 @@ class School extends Component{
                     <td>{school.name}</td>
                     <td>{school.regionId}</td>
                     <td>
-                      <Link className='operator' to={`/school/detail/${school.id}`}>详情</Link>
+                      <Link className='operator' to={`/school/school-detail/${school.id}`}>详情</Link>
                       <Link className='operator' to={`/school/school-edit/${school.id}`}> 编辑</Link>
                       <button className='btn btn-primary' onClick={(e)=>{this.deleteSchool(school.id)}}>删除</button>
                     </td>
@@ -113,7 +113,7 @@ class School extends Component{
           }
         </TableList>
         <Pagination current = {this.state.start+1} 
-          total={Math.ceil(this.state.total/this.state.size)} 
+          total={this.state.total} 
           onChange={(pageNum)=>this.onPageNumChange(pageNum)}/>
       </div>
     )

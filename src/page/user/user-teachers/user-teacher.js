@@ -60,7 +60,14 @@ class UserTeacher extends Component{
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '老师管理'></Title>
+        <Title title = '老师管理'>
+          <div className='page-header-right'>
+            <Link to='/user/teacher/add' className='btn btn-primary'>
+              <i className='fa fa-plus'/>
+              <span> 添加老师</span>
+            </Link>
+          </div>
+        </Title>
         <TableList tableHeads = {tableHeads}>
           {
             this.state.list.map((user,index)=> {
@@ -73,8 +80,8 @@ class UserTeacher extends Component{
                     <td>{user.phone}</td>
                     <td>{new Date(user.createTime).toLocaleString()}</td>
                     <td>
-                      <Link className='operator' to={`user/parents/detail/${user.id}`}>详情 </Link>
-                      <Link className='operator' to={`user/parents/edit/${user.id}`}> 编辑</Link>
+                      <Link className='operator' to={`user/teacher/detail/${user.id}`}>详情 </Link>
+                      <Link className='operator' to={`user/teacher/edit/${user.id}`}> 编辑</Link>
                       <button className='btn btn-primary ' onClick={(e)=>this.deleteUser(user.id)}>删除</button>
                     </td>
                 </tr>

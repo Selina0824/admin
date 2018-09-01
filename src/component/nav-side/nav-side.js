@@ -54,7 +54,7 @@ class NavSide extends React.Component{
                        <span className="fa arrow"></span></Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/services/items">服务管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/services/items">服务项目管理</NavLink>
                           </li>
                       </ul>
                   </li>

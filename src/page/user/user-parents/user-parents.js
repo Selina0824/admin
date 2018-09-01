@@ -66,7 +66,7 @@ class UserParents extends Component{
       {name:'所在学校', width:'15%'},
       {name:'所在班级', width:'15%'},
       {name:'电话', width:'15%'},
-      {name:'注册时间', width:'15%'},
+      // {name:'注册时间', width:'15%'},
       {name:'操作', width:'15%'}
     ]
     return (
@@ -91,7 +91,7 @@ class UserParents extends Component{
                     <td>待填写</td>
                     <td>{user.clazz}</td>
                     <td>{user.phone}</td>
-                    <td>{new Date().toLocaleString()}</td>
+                    {/* <td>{new Date().toLocaleString()}</td> */}
                     <td>
                       <Link className='operator' to={`/user/parents/detail/${user.id}`}>详情 </Link>
                       <Link className='operator' to={`/user/parents/edit/${user.id}`}> 编辑</Link>

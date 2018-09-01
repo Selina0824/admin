@@ -6,7 +6,6 @@ class Order extends Component{
     return (
       <div id='page-wrapper'>
         <Title title = '订单管理'>
-          <button></button>
         </Title>
         <div className='row'>
           <div className='col-md-12'>

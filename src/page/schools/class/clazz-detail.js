@@ -12,7 +12,7 @@ const _regionService  = new RegionService();
 const _util = new Util();
 
 
-class ClazzEdit extends Component{
+class ClazzDetail extends Component{
   constructor(props){
     super(props);
     this.state={
@@ -44,45 +44,6 @@ class ClazzEdit extends Component{
       })
     }
   }
-  onSchoolChange(schoolId){
-    this.setState({
-        schoolId
-    })
-  }
-  onInputChange(e){
-    let inputValue = e.target.value;
-    this.setState({
-      name:inputValue
-    });
-  }
-  onSubmit(e){
-    let clazzInfo = {
-      name: this.state.name,
-      schoolId: this.state.schoolId
-    };
-    let checkResult = _schoolService.checkNewClazzInfo(clazzInfo);
-    if(checkResult.status){
-      if(this.state.id){
-        clazzInfo = {
-          id: this.state.id,
-          ...clazzInfo
-        }
-        _schoolService.editClazz(clazzInfo).then(res=>{
-          alert('编辑成功');
-          this.props.history.push('/school/class-list');
-        },err=>_util.errorTips(err))
-      } else {
-        _schoolService.addClazz(clazzInfo).then(res =>{
-          alert('添加成功');
-          this.props.history.push('/school/class-list');
-        }, err => {
-          _util.errorTips(err);
-      })
-      }
-    }else{
-        _util.errorTips(checkResult.msg);
-    }
-  }
   render(){
     return (
       <div id='page-wrapper'>
@@ -95,22 +56,13 @@ class ClazzEdit extends Component{
                 <div className="col-md-5">
                   <input type="text" 
                     className="form-control" 
-                    value={this.state.name}
-                    placeholder="请输入班级名称" 
-                    onChange = {e=>this.onInputChange(e)}/>
+                    readOnly
+                    value={this.state.name} />
                 </div>
               </div>
               <div className="form-group">
                 <label  className="col-md-2 control-label">所属学校</label>
-                <SchoolSelector schoolId={this.state.schoolId} 
-                  onSchoolChange = {(schoolId)=>{this.onSchoolChange(schoolId)}}/>
-              </div>
-              <div className="form-group">
-                <div className="col-md-offset-2 col-md-10">
-                  <button type="btn" 
-                    className="btn btn-xl btn-primary"
-                    onClick={e=>{this.onSubmit(e)}}>提交</button>
-                </div>
+                <SchoolSelector schoolId={this.state.schoolId} readOnly = '2' />
               </div>
             </div>
           </div>
@@ -120,5 +72,5 @@ class ClazzEdit extends Component{
   }
 }
 
-export default ClazzEdit;
+export default ClazzDetail;
 
