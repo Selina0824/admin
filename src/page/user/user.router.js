@@ -6,6 +6,8 @@ import UserTeacher from './user-teachers/user-teacher';
 import UserTeacherRegister from './user-teacher-register/user-teacher-register';
 import ParentsEdit from './user-parents/user-parents-edit';
 import ParentsDetail from './user-parents/user-parents.detail';
+import TeacherEdit from './user-teachers/user-teacher-edit';
+import TeacherDetail from './user-teachers/user-teacher.detail';
 
 class UserRouter extends Component {
 
@@ -16,9 +18,14 @@ class UserRouter extends Component {
         <Redirect exact from='/user' to = '/user/parents'/>
         <Route path='/user/teachers' component={UserTeacher}/>
         <Route path='/user/register' component={UserTeacherRegister}/>
+
         <Route path='/user/parents/add/' component={ParentsEdit}/>
         <Route path='/user/parents/edit/:id' component={ParentsEdit}/>
         <Route path='/user/parents/detail/:id' component={ParentsDetail}/>
+
+        <Route path='/user/teacher/add/' component={ParentsEdit}/>
+        <Route path='/user/teacher/edit/:id' component={ParentsEdit}/>
+        <Route path='/user/teacher/detail/:id' component={ParentsDetail}/>
       </Switch>
     );
   }

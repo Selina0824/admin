@@ -3,17 +3,7 @@ import $ from 'jquery';
 const _util = new Util();
 let baseUrl = 'https://api.st.qischool.cn'
 class UserService{
-
-    getTeacherList(data){
-      return _util.request({
-        type: 'post',
-        url: '/manage/user/list.do',
-        data:{
-          pageNum:data
-        }
-      });
-  }
-    
+   
   /** 
    * 家长管理部分
   */
@@ -109,6 +99,89 @@ class UserService{
     } else {
       return true;
     }
+  }
+
+     
+  /** 
+   * 老师管理部分
+  */
+ //获取老师列表
+ getTeacherList(listParam) {
+  let url = baseUrl + '/account/teachers',
+    data = {};
+  if (listParam.listType === 'list') {
+    data.start = listParam.pageNum - 1;
+  } else if (listParam.listType === 'search') {
+    data.start = listParam.pageNum - 1;
+    data[listParam.searchType] = listParam.searchKeyword;
+  }
+  //选择下拉框中设置size为10000
+  if (listParam.size) {
+    data.size = listParam.size
+  }
+  return _util.request({
+    type: 'get',
+    url: url,
+    data: data
+  });
+}
+  //添加老师
+  addTeacher(userInfo) {
+    let url = baseUrl + '/account/teachers';
+    return _util.request({
+      type:'post',
+      url:url,
+      data: userInfo
+    })
+  }
+
+  //修改老师
+  editTeacher(userInfo){
+    let url = `${baseUrl}/account/teachers/${userInfo.id}`
+    return _util.request({
+      type:'put',
+      url:url,
+      data: userInfo
+    })
+  }
+
+  //删除老师
+  deleteTeacher(id){
+    let url = baseUrl+'/account/teachers/'+id;
+    return _util.request({
+      type:'delete',
+      url:url
+    })
+  }
+  // 检查老师信息
+  checkTeacherInfo(teacherInfo) {
+    let name = $.trim(teacherInfo.name);
+    let phone = teacherInfo.phone;
+    let clazzId = teacherInfo.clazzId;
+    // 检查老师姓名
+    if (typeof name !== 'string' || name.length === 0) {
+      return {
+        status: false,
+        msg: '老师姓名不能为空'
+      }
+    };
+    if(!this.isPhoneAvailable(phone)){
+      return {
+        status: false,
+        msg: '请输入正确的手机号码'
+      }
+    }
+    //检查是否选择班级
+    if(!clazzId){
+      return {
+        status: false,
+        msg: '请选择班级'
+      }
+    }
+    return {
+      status: true,
+      msg: '验证通过'
+    };
   }
 }
 export default UserService;
