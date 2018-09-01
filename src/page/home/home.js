@@ -4,28 +4,50 @@ import './home.css';
 import Title from '../../component/page-title/title';
 
 import Util from '../../util/util';
-import Statistic from '../../service/statistic.service'
+import UserService from '../user/user.service';
+import SchoolService from '../schools/school.service';
 
 const _util = new Util();
-const _statistic = new Statistic();
+const _userService  = new UserService();
+const _schoolService = new SchoolService();
 
 
 class Home extends Component{
   constructor(props){
     super(props);
     this.state = {
-      parentsCount:'123',
-      teachersCount:'456',
-      orderCount:'789'
+      parentsCount:'-',
+      teachersCount:'-',
+      schoolsCount:'-'
     }
   }
   componentDidMount(){
     this.loadCount();
   }
   loadCount(){
-    _statistic.getHomeCount().then(res=>{
-      this.setState(res);
+    //获取注册家长数量
+    _userService.getParentsList.then(res=>{
+      this.setState({
+        parentsCount:res.total
+      });
+    },err=>{
+      _util.errorTips(err);
+    });
 
+    //获取注册老师数量
+    _userService.getTeacherList.then(res=>{
+      this.setState({
+        teachersCount:res.total
+      });
+    },err=>{
+      _util.errorTips(err);
+    })
+
+    //获取注册学校数量
+    _schoolService.getSchoolList.then(res=>{
+      this.setState({
+        schoolsCount:res.total
+      });
     },err=>{
       _util.errorTips(err);
     })
@@ -48,9 +70,9 @@ class Home extends Component{
             </Link>
           </div>
           <div class="col-md-4">
-            <Link class="color-box blue" to="/order">
-              <p class="count">{this.state.orderCount}</p>
-              <p class="desc"><i class="fa fa-check-square-o"></i><span>订单总数</span></p>
+            <Link class="color-box blue" to="/school">
+              <p class="count">{this.state.schoolsCount}</p>
+              <p class="desc"><i class="fa fa-check-square-o"></i><span>学校总数</span></p>
             </Link>
           </div>
         </div>

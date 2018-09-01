@@ -72,7 +72,7 @@ class Login extends Component{
                   <input type="password" 
                     className="form-control" 
                     placeholder="请输入密码" 
-                    name="password" 
+                    name="password"
                     onChange = {e=>this.onInputChange(e)} 
                     onKeyUp = {e => this.onInputKeyup(e)}
                   />

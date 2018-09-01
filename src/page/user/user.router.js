@@ -23,9 +23,9 @@ class UserRouter extends Component {
         <Route path='/user/parents/edit/:id' component={ParentsEdit}/>
         <Route path='/user/parents/detail/:id' component={ParentsDetail}/>
 
-        <Route path='/user/teacher/add/' component={ParentsEdit}/>
-        <Route path='/user/teacher/edit/:id' component={ParentsEdit}/>
-        <Route path='/user/teacher/detail/:id' component={ParentsDetail}/>
+        <Route path='/user/teacher/add/' component={TeacherEdit}/>
+        <Route path='/user/teacher/edit/:id' component={TeacherEdit}/>
+        <Route path='/user/teacher/detail/:id' component={TeacherDetail}/>
       </Switch>
     );
   }
