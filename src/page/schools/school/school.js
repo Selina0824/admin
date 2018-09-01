@@ -66,9 +66,14 @@ class School extends Component{
       this.loadSchoolList();
     })
   }
-  deleteRegion(id){
+  deleteSchool(id){
     if(window.confirm(`确定要删除 ${id} 吗？`)){
-      console.log('删除学校 '+ id)
+      _schoolService.deleteSchool(id).then(res=>{
+        alert('删除成功。')
+        this.loadSchoolList();
+      },err=>{
+        _util.errorTips(err);
+      })
     }
   }
   render(){
@@ -98,9 +103,9 @@ class School extends Component{
                     <td>{school.name}</td>
                     <td>{school.regionId}</td>
                     <td>
-                      <Link className='operator' to={`user/parents/detail/${school.id}`}>详情</Link>
-                      <Link className='operator' to={`user/parents/edit/${school.id}`}> 编辑</Link>
-                      <button className='btn btn-primary' onClick={(e)=>{this.deleteRegion(school.id)}}>删除</button>
+                      <Link className='operator' to={`/school/detail/${school.id}`}>详情</Link>
+                      <Link className='operator' to={`/school/school-edit/${school.id}`}> 编辑</Link>
+                      <button className='btn btn-primary' onClick={(e)=>{this.deleteSchool(school.id)}}>删除</button>
                     </td>
                 </tr>
               )

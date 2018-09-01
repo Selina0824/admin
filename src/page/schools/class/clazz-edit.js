@@ -22,13 +22,13 @@ class ClazzEdit extends Component{
               <div className="form-group">
                 <label htmlFor="parentName" className="col-md-2 control-label">家长姓名</label>
                 <div className="col-md-5">
-                  <input type="text" className="form-control" name="parentName" id="parentName" placeholder="请输入家长姓名" value=""/>
+                  <input type="text" className="form-control" name="parentName" id="parentName" placeholder="请输入家长姓名"/>
                 </div>
               </div>
               <div className="form-group">
                 <label htmlFor="childName" className="col-md-2 control-label">孩子姓名</label>
                 <div className="col-md-5">
-                  <input type="text" className="form-control" name="childName" id="childName" placeholder="请输入孩子姓名" value=""/>
+                  <input type="text" className="form-control" name="childName" id="childName" placeholder="请输入孩子姓名"/>
                 </div>
               </div>
               <div className="form-group">

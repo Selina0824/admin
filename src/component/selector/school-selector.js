@@ -19,6 +19,9 @@ class SchoolSelector extends Component{
   componentDidMount(){
     this.loadSchoolList();
   }
+  componentWillReceiveProps(nextProps){
+    
+  }
   //加载学校
   loadSchoolList(){
     let listParam = {

@@ -35,6 +35,28 @@ class SchoolService {
     })
   }
 
+  //修改学校
+  editSchool(schoolInfo){
+    let url = `${baseUrl}/account/schools/${schoolInfo.id}`
+    return _util.request({
+      type:'put',
+      url:url,
+      data: {
+        name: schoolInfo.name,
+        regionId: schoolInfo.regionId
+      }
+    })
+  }
+
+  //删除学校
+  deleteSchool(id){
+    let url = baseUrl+'/account/schools/'+id;
+    return _util.request({
+      type:'delete',
+      url:url
+    })
+  }
+
   getClazzList(data) {
     return _util.request({
       type: 'get',

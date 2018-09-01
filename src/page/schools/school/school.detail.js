@@ -11,15 +11,14 @@ const _regionService  = new RegionService();
 const _util = new Util();
 
 
-class SchoolEdit extends Component{
+class SchoolDetail extends Component{
   constructor(props){
     super(props);
     this.state={
       id: this.props.match.params.id,
       regionId:0,
-      firstRegionId:'',
-      secondRegionId:'',
-      thirdRegionId:0,
+      firstRegionId:1,
+      secondRegionId:2,
       name:''
     }
   }
@@ -83,52 +82,10 @@ class SchoolEdit extends Component{
       })
     }
   }
-  onRegionChange(regionId,firstRegionId,secondRegionId,thirdRegionId){
-    this.setState({
-        regionId: regionId,
-        firstRegionId,
-        secondRegionId,
-        thirdRegionId
-    })
-  }
-  onInputChange(e){
-    let inputValue = e.target.value;
-    this.setState({
-      name:inputValue
-    });
-  }
-  onSubmit(e){
-    let schoolInfo = {
-      name: this.state.name,
-      regionId: this.state.regionId
-    };
-    let checkResult = _schoolService.checkNewSchoolInfo(schoolInfo);
-    if(checkResult.status){
-      if(this.state.id){
-        schoolInfo = {
-          id: this.state.id,
-          ...schoolInfo
-        }
-        _schoolService.editSchool(schoolInfo).then(res=>{
-          alert('编辑成功');
-          this.props.history.push('/school/school-list');
-        },err=>_util.errorTips(err))
-      } else {
-        _schoolService.addSchool(schoolInfo).then(res =>{
-          alert('添加成功');
-          this.props.history.push('/school/school-list');
-        }, err => {
-          _util.errorTips(err);
-      })
-      }
-    }else{
-        _util.errorTips(checkResult.msg);
-    }
-  }
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = {this.state.id?'学校管理 -- 编辑学校':'学校管理 -- 添加学校'}/>
+        <Title title = '学校管理 -- 学校详情'/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">
@@ -139,22 +96,15 @@ class SchoolEdit extends Component{
                     className="form-control" 
                     value={this.state.name}
                     placeholder="请输入学校名称" 
-                    onChange = {e=>this.onInputChange(e)}/>
+                    readOnly/>
                 </div>
               </div>
               <div className="form-group">
                 <label  className="col-md-2 control-label">所属地区</label>
-                <RegionSelector firstRegionId={this.state.firstRegionId} 
-                  secondRegionId = {this.state.secondRegionId} 
-                  thirdRegionId = {this.state.thirdRegionId}
-                  onRegionChange = {(regionId,firstRegionId,secondRegionId,thirdRegionId)=>{this.onRegionChange(regionId,firstRegionId,secondRegionId,thirdRegionId)}}/>
-              </div>
-              <div className="form-group">
-                <div className="col-md-offset-2 col-md-10">
-                  <button type="btn" 
-                    className="btn btn-xl btn-primary"
-                    onClick={e=>{this.onSubmit(e)}}>提交</button>
-                </div>
+                <RegionSelector readOnly = '2'
+                firstRegionId={this.state.firstRegionId} 
+                secondRegionId = {this.state.secondRegionId} 
+                thirdRegionId = {this.state.thirdRegionId}/>
               </div>
             </div>
           </div>
@@ -164,5 +114,5 @@ class SchoolEdit extends Component{
   }
 }
 
-export default SchoolEdit;
+export default SchoolDetail;
 

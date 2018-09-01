@@ -17,15 +17,44 @@ class RegionSelector extends Component{
       secondRegionList:[],
       secondRegionId: '',
       thirdRegionList : [],
-      thirdRegionId : '',
-      // schoolList: [],
-      // schoolId: '',
-      // clazzList:[],
-      // clazzId:''
+      thirdRegionId : ''
     }
   }
   componentDidMount(){
     this.loadFirstRegionList();
+  }
+  componentWillReceiveProps(nextProps){
+    let firstRegionIdChange = this.state.firstRegionId !== nextProps.firstRegionId;
+    let secondRegionIdChange = this.state.secondRegionId !== nextProps.secondRegionId;
+    let thirdRegionIdChange = this.state.thirdRegionId !== nextProps.thirdRegionId;
+    
+    // 如果只有两级地区
+    if(nextProps.thirdRegionId == 0){
+      //数据没有发生变化
+      if(!firstRegionIdChange && !secondRegionIdChange){
+        return;
+      }
+      this.setState({
+        firstRegionId:nextProps.firstRegionId,
+        secondRegionId: nextProps.secondRegionId,
+        thirdRegionId : ''
+      },()=>{
+         this.loadSecondRegionList();
+      })
+    } else{
+      if(!firstRegionIdChange && !secondRegionIdChange && !thirdRegionIdChange){
+        return;
+      }
+      //有三级区域
+      this.setState({
+        firstRegionId:nextProps.firstRegionId,
+        secondRegionId: nextProps.secondRegionId,
+        thirdRegionId : nextProps.thirdRegionId
+      },()=>{
+        this.loadSecondRegionList();
+        this.loadThirdRegionList();
+      })
+    }
   }
   //加载一级地区
   loadFirstRegionList(){
@@ -72,44 +101,14 @@ class RegionSelector extends Component{
       _util.errorTips(err)
     })
   }
-  // //加载学校
-  // loadSchoolList(){
-  //   let listParam = {
-  //     size:10000,
-  //     listType : 'search',
-  //     searchType: 'regionId',
-  //     searchKeyword: this.state.thirdRegionId,
-  //     pageNum:1
-  //   }
-  //   _schoolService.getSchoolList(listParam).then(res=>{
-  //     this.setState({
-  //       forthRegionList:res.data
-  //     })
-  //   }, err => {
-  //     _util.errorTips(err)
-  //   })
-  // }
-  // //加载班级
-  // loadClazzList(){
-  //   let listParam = {
-  //     size:10000,
-  //     id:this.state.schoolId
-  //   }
-  //   _regionService.getRegionList(listParam).then(res=>{
-  //     this.setState({
-  //       forthRegionList:res.data
-  //     })
-  //   }, err => {
-  //     _util.errorTips(err)
-  //   })
-  // }
   //选择一级地区
   onFirstRegionChange(e){
     if(e.target.value){
       let newId  = e.target.value;
       this.setState({
         firstRegionId: newId,
-        secondRegionList: []
+        secondRegionList: [],
+        thirdRegionList:[]
       },()=>{
         //更新二级地区
         this.loadSecondRegionList();
@@ -118,7 +117,7 @@ class RegionSelector extends Component{
     }
   }
    //选择二级地区
-   onSecondRegionChange(e){
+  onSecondRegionChange(e){
     if(e.target.value){
       let newId  = e.target.value;
       this.setState({
@@ -137,66 +136,45 @@ class RegionSelector extends Component{
       let newId  = e.target.value;
       this.setState({
         thirdRegionId: newId,
-        // schoolList: []
       },()=>{
-        //更新学校列表
-        // this.loadSchoolList();
         this.onPropsRegionChange();
       })
     }
   }
-  //  //选择学校
-  //  onSchoolChange(e){
-  //   if(e.target.value){
-  //     let newId  = e.target.value;
-  //     this.setState({
-  //       schoolId: newId,
-  //       clazzList:[]
-  //     },()=>{
-  //       this.loadClazzList();
-  //       this.onPropsRegionChange();
-  //     })
-  //   }
-  // }
-  //  //选择班级
-  //  onClazzChange(e){
-  //   if(e.target.value){
-  //     let newId  = e.target.value;
-  //     this.setState({
-  //       clazzId: newId,
-  //     },()=>{
-  //       this.onPropsRegionChange();
-  //     })
-  //   }
-  // }
   //传给父组件选中的结果
   onPropsRegionChange(){
     //判断props中回调方法是否存在
     let regionChangable = typeof this.props.onRegionChange === 'function';
     if(this.state.thirdRegionId){
       //如果有三级地区
-      regionChangable && this.props.onRegionChange(this.state.thirdRegionId);
+      regionChangable && this.props.onRegionChange(this.state.thirdRegionId,this.state.firstRegionId,this.state.secondRegionId,this.state.thirdRegionId);
     } else if (this.state.secondRegionId){
       //如果只有二级地区
-      regionChangable && this.props.onRegionChange(this.state.secondRegionId);
+      regionChangable && this.props.onRegionChange(this.state.secondRegionId,this.state.firstRegionId,this.state.secondRegionId,0);
     } else if (this.state.firstRegionId){
       //如果只有一级地区
-      regionChangable && this.props.onRegionChange(this.state.firstRegionId);
-    }
+      regionChangable && this.props.onRegionChange(this.state.firstRegionId,this.state.firstRegionId,'',0);
+    } 
   }
   render (){
     return (
       <div className="col-md-10">
-        <select className="form-control cate-select" onChange = {(e)=>{this.onFirstRegionChange(e)}}>
-        <option value="">请选择省份</option>
-          {
-            this.state.firstRegionList.map(
-              (region, index)=><option value = {region.id} key={index}>{region.name}</option>
-            )
-          }
+        <select className="form-control cate-select" 
+          disabled = {this.props.readOnly === '2'} 
+          value = {this.state.firstRegionId}
+          onChange = {(e)=>{this.onFirstRegionChange(e)}}>
+          <option value="">请选择省份</option>
+            {
+              this.state.firstRegionList.map(
+                (region, index)=><option value = {region.id} key={index}>{region.name}</option>
+              )
+            }
         </select>
         {this.state.secondRegionList.length?(
-          <select className="form-control cate-select" onChange = {(e)=>{this.onSecondRegionChange(e)}}>
+          <select className="form-control cate-select" 
+            disabled= {this.props.readOnly === '2'} 
+            value = {this.state.secondRegionId}
+            onChange = {(e)=>{this.onSecondRegionChange(e)}}>
             <option value="">请选择城市</option>
             {
               this.state.secondRegionList.map(
@@ -208,7 +186,10 @@ class RegionSelector extends Component{
         }
         {
           this.state.thirdRegionList.length?(
-            <select className="form-control cate-select" onChange = {(e)=>{this.onThirdRegionChange(e)}}>
+            <select className="form-control cate-select" 
+            disabled = {this.props.readOnly === '2'} 
+            value = {this.state.thirdRegionId}
+            onChange = {(e)=>{this.onThirdRegionChange(e)}}>
               <option value="">请选择区/县</option>
               {
                 this.state.thirdRegionList.map(
@@ -218,30 +199,6 @@ class RegionSelector extends Component{
             </select>
           ):null
         }
-        {/* {
-          this.state.schoolList.length?(
-            <select className="form-control cate-select" onChange = {(e)=>{this.onSchoolChange(e)}}>
-              <option value="">请选择学校</option>
-              {
-                this.state.thirdRegionList.map(
-                  (region, index)=><option value = {region.id} key={index}>{region.name}</option>
-                )
-              }
-            </select>
-          ):null
-        }
-        {
-          this.state.clazzList.length?(
-            <select className="form-control cate-select" onChange = {(e)=>{this.onClazzChange(e)}}>
-              <option value="">请选择班级</option>
-              {
-                this.state.thirdRegionList.map(
-                  (region, index)=><option value = {region.id} key={index}>{region.name}</option>
-                )
-              }
-            </select>
-          ):null
-        } */}
       </div>
     )
   }
