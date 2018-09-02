@@ -86,11 +86,11 @@ class UserTeacherRegister extends Component{
               return (
                 <tr key={index}>
                     <td>{user.id}</td>
-                    <td>{user.username}</td>
+                    {/* <td>{user.username}</td>
                     <td>{user.childname}</td>
                     <td>待填写</td>
                     <td>{user.clazz}</td>
-                    <td>{user.phone}</td>
+                    <td>{user.phone}</td> */}
                     <td>{new Date().toLocaleString()}</td>
                     <td>
                       <Link className='operator' to={`/user/parents/detail/${user.id}`}>详情 </Link>

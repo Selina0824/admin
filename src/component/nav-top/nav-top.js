@@ -15,12 +15,8 @@ class NavTop extends React.Component{
     };
     // 退出登录
     onLogout(){
-        _admin.logout().then(res => {
-            _util.removeStorage('userInfo');
-            window.location.href = '/login';
-        }, errMsg => {
-            _util.errorTips(errMsg);
-        });
+      _util.removeStorage('userInfo');
+      window.location.href = '/login';
     };
 
     render(){

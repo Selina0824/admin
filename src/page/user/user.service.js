@@ -9,7 +9,7 @@ class UserService{
   */
  //获取家长列表
  getParentsList(listParam) {
-  let url = baseUrl + '/account/users',
+  let url = baseUrl + '/account/parents',
     data = {};
   if (listParam.listType === 'list') {
     data.start = listParam.pageNum - 1;
@@ -29,7 +29,7 @@ class UserService{
 }
   //添加家长
   addParents(userInfo) {
-    let url = baseUrl + '/account/users';
+    let url = baseUrl + '/account/parents';
     return _util.request({
       type:'post',
       url:url,
@@ -39,7 +39,7 @@ class UserService{
 
   //修改家长
   editParents(userInfo){
-    let url = `${baseUrl}/account/users/${userInfo.id}`
+    let url = `${baseUrl}/account/parents/${userInfo.id}`
     return _util.request({
       type:'put',
       url:url,
@@ -49,7 +49,7 @@ class UserService{
 
   //删除家长
   deleteParents(id){
-    let url = baseUrl+'/account/users/'+id;
+    let url = baseUrl+'/account/parents/'+id;
     return _util.request({
       type:'delete',
       url:url

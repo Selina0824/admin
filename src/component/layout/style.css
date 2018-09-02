@@ -3,3 +3,6 @@
   right: 15px;
   top:12px;
 }
+.navbar-side::-webkit-scrollbar{
+  display: none;
+}

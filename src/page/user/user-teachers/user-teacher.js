@@ -85,7 +85,7 @@ class UserTeacher extends Component{
       <div id='page-wrapper'>
         <Title title = '老师管理'>
         <div className='page-header-right'>
-            <Link to='/user/teachers/add' className='btn btn-primary'>
+            <Link to='/user/teacher/add' className='btn btn-primary'>
               <i className='fa fa-plus'/>
               <span> 添加老师</span>
             </Link>

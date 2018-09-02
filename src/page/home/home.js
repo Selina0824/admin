@@ -26,7 +26,10 @@ class Home extends Component{
   }
   loadCount(){
     //获取注册家长数量
-    _userService.getParentsList.then(res=>{
+    let listParam= {
+      pageNum:1
+    }
+    _userService.getParentsList(listParam).then(res=>{
       this.setState({
         parentsCount:res.total
       });
@@ -35,7 +38,7 @@ class Home extends Component{
     });
 
     //获取注册老师数量
-    _userService.getTeacherList.then(res=>{
+    _userService.getTeacherList(listParam).then(res=>{
       this.setState({
         teachersCount:res.total
       });
@@ -44,7 +47,7 @@ class Home extends Component{
     })
 
     //获取注册学校数量
-    _schoolService.getSchoolList.then(res=>{
+    _schoolService.getSchoolList(listParam).then(res=>{
       this.setState({
         schoolsCount:res.total
       });

@@ -101,8 +101,8 @@ class UserParents extends Component{
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.childName}</td>
-                    <td>{user.clazz.school.name}</td>
-                    <td>{user.clazz.name}</td>
+                    <td>{user.clazz?user.clazz.school.name:'—'}</td>
+                    <td>{user.clazz?user.clazz.name:'—'}</td>
                     <td>{user.phone}</td>
                     {/* <td>{new Date().toLocaleString()}</td> */}
                     <td>
