@@ -15,17 +15,27 @@ class UserTeacherRegister extends Component{
   constructor(props){
     super(props);
     this.state= {
+      STATUS:['等待审批','审批通过','审批拒绝'],
       data:[],
       pageNum:1,
-      listType:'list'
+      listType:'list',
+      statusColor:['status-grey','status-green','status-red']
     }
   }
 
   componentDidMount(){
-    this.loadParentsList();
+    this.loadRegistry();
   }
-  loadParentsList(){
-    _userService.getParentsList(this.state.pageNum).then(res => {
+  loadRegistry(){
+    let listParam ={};
+    listParam.listType = this.state.listType;
+    listParam.pageNum = this.state.pageNum;
+    //如果是搜索，需要加入搜索类型和搜索关键字
+    if(this.state.listType ==='search'){
+      listParam.searchType = this.state.searchType;
+      listParam.searchKeyword = this.state.searchKeyword;
+    }
+    _userService.getRegsisteriesList(listParam).then(res => {
       this.setState(res);
     }, err=> {
       this.setState({
@@ -41,7 +51,9 @@ class UserTeacherRegister extends Component{
       pageNum:1,
       searchType,
       searchKeyword
-    },this.loadParentsList())
+    },()=>{
+      this.loadRegistry()
+    })
   }
   /** 
    * 页数发生改变时执行
@@ -50,35 +62,42 @@ class UserTeacherRegister extends Component{
     this.setState({
       pageNum:pageNum
     },()=>{
-      this.loadParentsList(pageNum);
+      this.loadRegistry(pageNum);
     })
   }
-  deleteUser(id){
-    if(window.confirm(`确定要删除 ${id} 吗？`)){
-      console.log('delete user '+ id)
+  setTeacherStatus(id,approved){
+    if(!approved){
+        if(window.confirm(`确定要拒绝老师注册申请 ${id} 吗?`)){
+            _userService.setTeacherStatus(id,approved).then(res=>{
+                alert('审批成功');
+                this.loadRegistry();
+              },err=>{
+                _util.errorTips(err);
+            })
+        }
+    } else {
+        _userService.setTeacherStatus(id,approved).then(res=>{
+            alert('审批成功');
+            this.loadRegistry();
+          },err=>{
+            _util.errorTips(err);
+        })
     }
+    
   }
   render(){
     let tableHeads = [
-      {name:'ID', width:'5%'},
-      {name:'家长姓名', width:'10%'},
-      {name:'孩子姓名', width:'10%'},
+      {name:'ID', width:'10%'},
+      {name:'老师姓名', width:'10%'},
       {name:'所在学校', width:'15%'},
       {name:'所在班级', width:'15%'},
       {name:'电话', width:'15%'},
-      {name:'注册时间', width:'15%'},
+      {name:'状态', width:'10%'},
       {name:'操作', width:'15%'}
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '老师注册管理'>
-        <div className='page-header-right'>
-            <Link to='/user/parents/add' className='btn btn-primary'>
-              <i className='fa fa-plus'/>
-              <span> 添加家长</span>
-            </Link>
-          </div>
-        </Title>
+        <Title title = '老师注册管理'></Title>
         <Search onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}}/>
         <TableList tableHeads = {tableHeads}>
           {
@@ -86,16 +105,24 @@ class UserTeacherRegister extends Component{
               return (
                 <tr key={index}>
                     <td>{user.id}</td>
-                    {/* <td>{user.username}</td>
-                    <td>{user.childname}</td>
-                    <td>待填写</td>
-                    <td>{user.clazz}</td>
-                    <td>{user.phone}</td> */}
-                    <td>{new Date().toLocaleString()}</td>
+                    <td>{user.name}</td>
+                    <td>{user.clazz.school.name}</td>
+                    <td>{user.clazz.name}</td>
+                    <td>{user.phone}</td>
+                    <td className={this.state.statusColor[user.status]}>{this.state.STATUS[user.status]}</td>
                     <td>
-                      <Link className='operator' to={`/user/parents/detail/${user.id}`}>详情 </Link>
-                      <Link className='operator' to={`/user/parents/edit/${user.id}`}> 编辑</Link>
-                      <button className='btn btn-primary ' onClick={(e)=>{this.deleteUser(user.id)}}>删除</button>
+                      <span>
+                        <Link className='operator' to={`/user/teacher-registeries/detail/${user.id}`}>查看详情 </Link>
+                      </span>
+                      {/* <Link className='operator' to={`/user/parents/edit/${user.id}`}> 编辑</Link> */}
+                      {
+                        !user.status?(
+                          <div className='float-left'>
+                            <button className='btn btn-warning btn-xs operator-xs' onClick={(e)=>{this.setTeacherStatus(user.id,false)}}>拒绝</button>
+                            <button className='btn btn-primary btn-xs operator-xs' onClick={(e)=>{this.setTeacherStatus(user.id,true)}}>通过</button>
+                          </div>
+                        ):null
+                      }
                     </td>
                 </tr>
               )

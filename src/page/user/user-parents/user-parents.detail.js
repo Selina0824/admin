@@ -39,12 +39,13 @@ class ParentsDetail extends Component{
       _userService.getParentsList(listParam).then(res=>{
         this.setState(
           {
-            schoolId : res.data[0].clazz.id,
+            schoolId : res.data[0].clazz.school.id,
             clazzId: res.data[0].clazz.id,
             name: res.data[0].name,
             childName: res.data[0].childName,
             phone: res.data[0].phone,
-            idNum:res.data[0].idNum
+            idNum:res.data[0].idNum,
+            avatar:res.data[0].avatar
           }
         );
       }, err=>{
@@ -69,7 +70,7 @@ class ParentsDetail extends Component{
                     value={this.state.name}/>
                 </div>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="idNum" className="col-md-2 control-label">身份证号码</label>
                 <div className="col-md-3">
                   <input type="text" 
@@ -78,7 +79,7 @@ class ParentsDetail extends Component{
                   readOnly 
                   value={this.state.idNum}/>
                 </div>
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="childName" className="col-md-2 control-label">孩子姓名</label>
                 <div className="col-md-3">
@@ -104,6 +105,16 @@ class ParentsDetail extends Component{
                 <ClassSelector clazzId = {this.state.clazzId} 
                   schoolId = {this.state.schoolId} readOnly='2'/>
               </div>
+              {
+                  this.state.avatar?(
+                    <div className="form-group">
+                    <label  className="col-md-2 control-label">孩子头像</label>
+                    <div className='col-md-3'>
+                          <img className='avatar' src={this.state.avatar}/>
+                    </div>
+                  </div>
+                  ):null
+              }
             </div>
           </div>
         </div>

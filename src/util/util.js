@@ -2,7 +2,6 @@ import $ from 'jquery';
 class Util {
   request(param) {
     return new Promise((resolve, reject) => {
-      // let access_token = this.getStorage('userInfo').access_token;
       let access_token = this.getStorage('userInfo').access_token;
       $.ajax({
         type: param.type || 'get',
@@ -21,7 +20,7 @@ class Util {
           if (401=== err.status) {
             this.doLogin();
           } else {
-            typeof reject === 'function' && reject(err.message);
+            typeof reject === 'function' && reject(err.responseJSON.message);
           }
         }
       });
@@ -44,7 +43,7 @@ class Util {
   errorTips(errMsg) {
     alert(errMsg || '请求失败');
   }
-  // 错误提示
+  // 成功提示
   successTips(successMsg) {
     alert(successMsg || '操作成功');
   }

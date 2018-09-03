@@ -10,7 +10,7 @@ class NavTop extends React.Component{
     constructor(props){
             super(props);
             this.state = {
-                username: _util.getStorage('userInfo').username
+                username: _util.getStorage('userInfo').user_roles
             }
     };
     // 退出登录

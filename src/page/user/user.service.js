@@ -2,57 +2,57 @@ import Util from '../../util/util';
 import $ from 'jquery';
 const _util = new Util();
 let baseUrl = 'https://api.st.qischool.cn'
-class UserService{
-   
+class UserService {
+
   /** 
    * 家长管理部分
-  */
- //获取家长列表
- getParentsList(listParam) {
-  let url = baseUrl + '/account/parents',
-    data = {};
-  if (listParam.listType === 'list') {
-    data.start = listParam.pageNum - 1;
-  } else if (listParam.listType === 'search') {
-    data.start = listParam.pageNum - 1;
-    data[listParam.searchType] = listParam.searchKeyword;
+   */
+  //获取家长列表
+  getParentsList(listParam) {
+    let url = baseUrl + '/account/parents',
+      data = {};
+    if (listParam.listType === 'list') {
+      data.start = listParam.pageNum - 1;
+    } else if (listParam.listType === 'search') {
+      data.start = listParam.pageNum - 1;
+      data[listParam.searchType] = listParam.searchKeyword;
+    }
+    //选择下拉框中设置size为10000
+    if (listParam.size) {
+      data.size = listParam.size
+    }
+    return _util.request({
+      type: 'get',
+      url: url,
+      data: data
+    });
   }
-  //选择下拉框中设置size为10000
-  if (listParam.size) {
-    data.size = listParam.size
-  }
-  return _util.request({
-    type: 'get',
-    url: url,
-    data: data
-  });
-}
   //添加家长
   addParents(userInfo) {
     let url = baseUrl + '/account/parents';
     return _util.request({
-      type:'post',
-      url:url,
+      type: 'post',
+      url: url,
       data: userInfo
     })
   }
 
   //修改家长
-  editParents(userInfo){
+  editParents(userInfo) {
     let url = `${baseUrl}/account/parents/${userInfo.id}`
     return _util.request({
-      type:'put',
-      url:url,
+      type: 'put',
+      url: url,
       data: userInfo
     })
   }
 
   //删除家长
-  deleteParents(id){
-    let url = baseUrl+'/account/parents/'+id;
+  deleteParents(id) {
+    let url = baseUrl + '/account/parents/' + id;
     return _util.request({
-      type:'delete',
-      url:url
+      type: 'delete',
+      url: url
     })
   }
   // 检查家长信息
@@ -74,14 +74,14 @@ class UserService{
         msg: '孩子姓名不能为空'
       }
     };
-    if(!this.isPhoneAvailable(phone)){
+    if (!this.isPhoneAvailable(phone)) {
       return {
         status: false,
         msg: '请输入正确的手机号码'
       }
     }
     //检查是否选择班级
-    if(!clazzId){
+    if (!clazzId) {
       return {
         status: false,
         msg: '请选择班级'
@@ -101,56 +101,56 @@ class UserService{
     }
   }
 
-     
+
   /** 
    * 老师管理部分
-  */
- //获取老师列表
- getTeacherList(listParam) {
-  let url = baseUrl + '/account/teachers',
-    data = {};
-  if (listParam.listType === 'list') {
-    data.start = listParam.pageNum - 1;
-  } else if (listParam.listType === 'search') {
-    data.start = listParam.pageNum - 1;
-    data[listParam.searchType] = listParam.searchKeyword;
+   */
+  //获取老师列表
+  getTeacherList(listParam) {
+    let url = baseUrl + '/account/teachers',
+      data = {};
+    if (listParam.listType === 'list') {
+      data.start = listParam.pageNum - 1;
+    } else if (listParam.listType === 'search') {
+      data.start = listParam.pageNum - 1;
+      data[listParam.searchType] = listParam.searchKeyword;
+    }
+    //选择下拉框中设置size为10000
+    if (listParam.size) {
+      data.size = listParam.size
+    }
+    return _util.request({
+      type: 'get',
+      url: url,
+      data: data
+    });
   }
-  //选择下拉框中设置size为10000
-  if (listParam.size) {
-    data.size = listParam.size
-  }
-  return _util.request({
-    type: 'get',
-    url: url,
-    data: data
-  });
-}
   //添加老师
   addTeacher(userInfo) {
     let url = baseUrl + '/account/teachers';
     return _util.request({
-      type:'post',
-      url:url,
+      type: 'post',
+      url: url,
       data: userInfo
     })
   }
 
   //修改老师
-  editTeacher(userInfo){
+  editTeacher(userInfo) {
     let url = `${baseUrl}/account/teachers/${userInfo.id}`
     return _util.request({
-      type:'put',
-      url:url,
+      type: 'put',
+      url: url,
       data: userInfo
     })
   }
 
   //删除老师
-  deleteTeacher(id){
-    let url = baseUrl+'/account/teachers/'+id;
+  deleteTeacher(id) {
+    let url = baseUrl + '/account/teachers/' + id;
     return _util.request({
-      type:'delete',
-      url:url
+      type: 'delete',
+      url: url
     })
   }
   // 检查老师信息
@@ -165,14 +165,14 @@ class UserService{
         msg: '老师姓名不能为空'
       }
     };
-    if(!this.isPhoneAvailable(phone)){
+    if (!this.isPhoneAvailable(phone)) {
       return {
         status: false,
         msg: '请输入正确的手机号码'
       }
     }
     //检查是否选择班级
-    if(!clazzId){
+    if (!clazzId) {
       return {
         status: false,
         msg: '请选择班级'
@@ -182,6 +182,37 @@ class UserService{
       status: true,
       msg: '验证通过'
     };
+  }
+
+  /** 
+   * 老师注册管理部分
+   */
+  // 获取老师注册列表
+  getRegsisteriesList(listParam) {
+    let url = baseUrl + '/account/registries',
+      data = {};
+    if (listParam.listType === 'list') {
+      data.start = listParam.pageNum - 1;
+    } else if (listParam.listType === 'search') {
+      data.start = listParam.pageNum - 1;
+      data[listParam.searchType] = listParam.searchKeyword;
+    }
+    return _util.request({
+      type: 'get',
+      url: url,
+      data: data
+    });
+  }
+  //审批
+  setTeacherStatus(id,approved){
+    let url = baseUrl + `/account/registries/${id}/approve`;
+    return _util.request({
+      type:'post',
+      url:url,
+      data:{
+        id,approved
+      }
+    })
   }
 }
 export default UserService;

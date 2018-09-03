@@ -28,6 +28,9 @@
 .operator{
   margin-right: 20px;
 }
+.operator-xs{
+  margin-right: 10px;
+}
 .required-input{
   color: green;
   font-size: 30px;
@@ -35,4 +38,25 @@
   line-height: 40px;
   margin-left:-10px;
   padding-left: 0;
+}
+.float-left{
+  float: left;
+}
+.avatar{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.status-green{
+    color: green;
+    font-weight: 600;
+}
+.status-red{
+    color: red;
+    font-weight: 600;
+}
+.status-grey{
+    color: grey;
+    font-weight: 600;
 }

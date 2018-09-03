@@ -9,7 +9,7 @@ const _userService = new UserService();
 const _util = new Util();
 
 
-class TeacherDetail extends Component{
+class TeacherRegisterDetail extends Component{
   constructor(props){
     super(props);
     this.state ={
@@ -25,7 +25,7 @@ class TeacherDetail extends Component{
   componentDidMount(){
     this.loadTeacher();
   }
-  // 加载班级详情
+  // 加载老师注册详情
   loadTeacher(){
     // 如果有id，表示是编辑功能，需要回填班级信息
     if(this.state.id){
@@ -35,7 +35,7 @@ class TeacherDetail extends Component{
         searchType: 'id',
         searchKeyword:this.state.id
       }
-      _userService.getTeacherList(listParam).then(res=>{
+      _userService.getRegsisteriesList(listParam).then(res=>{
         this.setState(
           {
             schoolId : res.data[0].clazz.school.id,
@@ -54,7 +54,7 @@ class TeacherDetail extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '老师管理 -- 老师详情'/>
+        <Title title = '老师注册管理 -- 老师注册详情'/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">
@@ -111,5 +111,5 @@ class TeacherDetail extends Component{
   }
 }
 
-export default TeacherDetail;
+export default TeacherRegisterDetail;
 

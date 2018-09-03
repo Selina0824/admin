@@ -38,7 +38,7 @@ class TeacherEdit extends Component{
       _userService.getTeacherList(listParam).then(res=>{
         this.setState(
           {
-            schoolId : res.data[0].clazz.id,
+            schoolId : res.data[0].clazz.school.id,
             clazzId: res.data[0].clazz.id,
             name: res.data[0].name,
             phone: res.data[0].phone,
@@ -124,7 +124,7 @@ class TeacherEdit extends Component{
                 </div>
                 <div className="col-md-1 required-input">*</div>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="idNum" className="col-md-2 control-label">身份证号码</label>
                 <div className="col-md-3">
                   <input type="text" 
@@ -134,7 +134,7 @@ class TeacherEdit extends Component{
                   placeholder="请输入身份证号码"
                   onChange = {e=>this.onInputChange(e)} />
                 </div>
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="phone" className="col-md-2 control-label">手机号码</label>
                 <div className="col-md-3">
@@ -160,6 +160,16 @@ class TeacherEdit extends Component{
                     onClick={e=>{this.onSubmit(e)}}>提交</button>
                 </div>
               </div>
+              {
+                  this.state.avatar?(
+                    <div className="form-group">
+                    <label  className="col-md-2 control-label">老师头像</label>
+                    <div className='col-md-3'>
+                          <img className='avatar' src={this.state.avatar}/>
+                    </div>
+                  </div>
+                  ):null
+              }
             </div>
           </div>
         </div>

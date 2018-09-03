@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../../component/page-title/title';
 import Util from '../../../util/util';
 import ClassSelector from '../../../component/selector/clazz-selector';
 import UserService from '../user.service';
+import FileUploader from '../../../component/file-uploader/file-uploader';
 
 const _userService = new UserService();
 const _util = new Util();
@@ -39,12 +39,12 @@ class ParentsEdit extends Component{
       _userService.getParentsList(listParam).then(res=>{
         this.setState(
           {
-            schoolId : res.data[0].clazz.id,
+            schoolId : res.data[0].clazz.school.id,
             clazzId: res.data[0].clazz.id,
             name: res.data[0].name,
             childName: res.data[0].childName,
             phone: res.data[0].phone,
-            idNum:res.data[0].idNum
+            idNum:res.data[0].idNum,
           }
         );
       }, err=>{
@@ -127,7 +127,7 @@ class ParentsEdit extends Component{
                 </div>
                 <div className="col-md-1 required-input">*</div>
               </div>
-              <div className="form-group">
+              {/* <div className="form-group">
                 <label htmlFor="idNum" className="col-md-2 control-label">身份证号码</label>
                 <div className="col-md-3">
                   <input type="text" 
@@ -137,7 +137,7 @@ class ParentsEdit extends Component{
                   placeholder="请输入身份证号码"
                   onChange = {e=>this.onInputChange(e)} />
                 </div>
-              </div>
+              </div> */}
               <div className="form-group">
                 <label htmlFor="childName" className="col-md-2 control-label">孩子姓名</label>
                 <div className="col-md-3">
@@ -168,6 +168,7 @@ class ParentsEdit extends Component{
                   schoolId = {this.state.schoolId}
                   onPropsChange = {(schoolId,clazzId)=>{this.onPropsChange(schoolId,clazzId)}}/>
               </div>
+              <FileUploader/>
               <div className="form-group">
                 <div className="col-md-offset-2 col-md-10">
                   <button type="btn" 

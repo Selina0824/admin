@@ -1,11 +1,9 @@
 import React,{Component} from 'react';
 import './selector.css';
 import RegionService from '../../page/address/region.service';
-import SchoolService from '../../page/schools/school.service';
 import Util from '../../util/util';
 
 const _regionService = new RegionService();
-const _schoolService  = new SchoolService();
 const _util = new Util();
 
 class RegionSelector extends Component{

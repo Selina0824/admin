@@ -44,7 +44,7 @@ class NavSide extends React.Component{
                               <NavLink activeClassName='active-menu' to="/user/teachers">老师管理</NavLink>
                           </li>
                           <li>
-                              <NavLink activeClassName='active-menu' to="/user/register">老师注册管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/user/teacher-register">老师注册管理</NavLink>
                           </li>
                       </ul>
                   </li>
