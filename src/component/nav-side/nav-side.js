@@ -34,9 +34,9 @@ class NavSide extends React.Component{
                       <Link to="/user">
                         <i className="fa fa-user"></i>
                         <span>用户</span>
-                        <span className="fa arrow"></span>
+                        {/* <span className="fa arrow"></span> */}
                        </Link>
-                       
+
                       <ul className={this.state.user?"nav nav-second-level collapse in":"nav nav-second-level collapse"}>
                           <li>
                               <NavLink activeClassName='active-menu' to="/user/parents">家长管理</NavLink>
@@ -53,7 +53,7 @@ class NavSide extends React.Component{
                       <Link to="/school">
                         <i className="fa fa-building"></i>
                         <span>学校</span>
-                        <span className="fa arrow"></span>
+                        {/* <span className="fa arrow"></span> */}
                        </Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
@@ -68,7 +68,7 @@ class NavSide extends React.Component{
                       <Link to="/services">
                         <i className="fa fa-leaf"></i>
                         <span>服务</span>
-                        <span className="fa arrow"></span>
+                        {/* <span className="fa arrow"></span> */}
                        </Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
@@ -80,7 +80,7 @@ class NavSide extends React.Component{
                       <Link to="/order">
                         <i className="fa fa-check-square-o fa-fw"></i>
                         <span>订单</span>
-                        <span className="fa arrow"></span>
+                        {/* <span className="fa arrow"></span> */}
                        </Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
@@ -92,7 +92,7 @@ class NavSide extends React.Component{
                       <Link to="/region">
                         <i className="fa fa-map-marker"></i>
                         <span>地址</span>
-                        <span className="fa arrow"></span>
+                        {/* <span className="fa arrow"></span> */}
                        </Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>

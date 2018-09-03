@@ -15,6 +15,22 @@ class UserParents extends Component{
   constructor(props){
     super(props);
     this.state= {
+        tabs:[{
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        }
+      ],
       data:[],
       pageNum:1,
       listType:'list'
@@ -84,7 +100,7 @@ class UserParents extends Component{
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '家长管理'>
+        <Title title = '家长管理' tabs = {this.state.tabs}>
         <div className='page-header-right'>
             <Link to='/user/parents/add' className='btn btn-primary'>
               <i className='fa fa-plus'/>

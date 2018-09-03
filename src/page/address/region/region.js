@@ -15,6 +15,22 @@ class Region extends Component{
   constructor(props){
     super(props);
     this.state= {
+        tabs:[{
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        }
+      ],
       data:[],
       pageNum:1,
       firstLoading:true,
@@ -85,7 +101,7 @@ class Region extends Component{
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '地区管理'>
+        <Title title = '地区管理' tabs = {this.state.tabs}>
           <div className='page-header-right'>
             <Link to='/region/region-add' className='btn btn-primary'>
               <i className='fa fa-plus'/>

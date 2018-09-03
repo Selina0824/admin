@@ -13,6 +13,22 @@ class TeacherDetail extends Component{
   constructor(props){
     super(props);
     this.state ={
+        tabs:[{
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        }
+      ],
       id: this.props.match.params.id,
       name:'',
       idNum:'',
@@ -54,7 +70,7 @@ class TeacherDetail extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '老师管理 -- 老师详情'/>
+        <Title title = '老师管理 -- 老师详情' tabs = {this.state.tabs}/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">

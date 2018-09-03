@@ -16,6 +16,11 @@ class Home extends Component{
   constructor(props){
     super(props);
     this.state = {
+        tabs:[{
+            active:true,
+            title:'首页',
+            href:'/'
+        }],
       parentsCount:'-',
       teachersCount:'-',
       schoolsCount:'-'
@@ -58,7 +63,7 @@ class Home extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '首页'></Title>
+        <Title title = '首页' tabs={this.state.tabs}></Title>
         <div class="row">
           <div class="col-md-4">
             <Link class="color-box brown" to="/user_parents">

@@ -15,6 +15,22 @@ class UserTeacherRegister extends Component{
   constructor(props){
     super(props);
     this.state= {
+        tabs:[{
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        },
+        {
+            active:true,
+            title:'首页',
+            href:'/'
+        }
+      ],
       STATUS:['等待审批','审批通过','审批拒绝'],
       data:[],
       pageNum:1,
@@ -97,7 +113,7 @@ class UserTeacherRegister extends Component{
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '老师注册管理'></Title>
+        <Title title = '老师注册管理' tabs = {this.state.tabs}></Title>
         <Search onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}}/>
         <TableList tableHeads = {tableHeads}>
           {
