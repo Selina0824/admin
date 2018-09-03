@@ -19,7 +19,7 @@ class UserRouter extends Component {
         <Redirect exact from='/user' to = '/user/parents'/>
         <Route path='/user/teachers' component={UserTeacher}/>
         <Route exact path='/user/teacher-register' component={UserTeacherRegister}/>
-        <Route path='/user/teacher-register/detail/:id' component={ParentsDetail}/>
+        <Route path='/user/teacher-register/detail/:id' component={TeacherRegisterDetail}/>
 
         <Route path='/user/parents/add/' component={ParentsEdit}/>
         <Route path='/user/parents/edit/:id' component={ParentsEdit}/>

@@ -112,7 +112,7 @@ class UserTeacherRegister extends Component{
                     <td className={this.state.statusColor[user.status]}>{this.state.STATUS[user.status]}</td>
                     <td>
                       <span>
-                        <Link className='operator' to={`/user/teacher-registeries/detail/${user.id}`}>查看详情 </Link>
+                        <Link className='operator' to={`/user/teacher-register/detail/${user.id}`}>查看详情 </Link>
                       </span>
                       {/* <Link className='operator' to={`/user/parents/edit/${user.id}`}> 编辑</Link> */}
                       {
