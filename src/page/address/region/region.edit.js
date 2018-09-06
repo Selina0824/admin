@@ -11,29 +11,11 @@ const _util = new Util();
 class RegionEdit extends Component{
   constructor(props){
     super(props);
-    this.state={
-        tabs:[{
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        }
-      ],
-    }
   }
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = '地址管理 -- 添加地址' tabs = {this.state.tabs}/>
+        <Title title = '地址管理 -- 添加地址'/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">

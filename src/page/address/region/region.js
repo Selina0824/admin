@@ -15,22 +15,6 @@ class Region extends Component{
   constructor(props){
     super(props);
     this.state= {
-        tabs:[{
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        }
-      ],
       data:[],
       pageNum:1,
       firstLoading:true,
@@ -97,17 +81,17 @@ class Region extends Component{
       {name:'经度', width:'15%'},
       {name:'纬度', width:'10%'},
       {name:'上级ID', width:'5%'},
-      {name:'操作', width:'15%'}
+    //   {name:'操作', width:'15%'}
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '地区管理' tabs = {this.state.tabs}>
-          <div className='page-header-right'>
+        <Title title = '地区管理'>
+          {/* <div className='page-header-right'>
             <Link to='/region/region-add' className='btn btn-primary'>
               <i className='fa fa-plus'/>
               <span>添加地区</span>
             </Link>
-          </div>
+          </div> */}
         </Title>
         <Search onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}}/>
         <TableList tableHeads = {tableHeads}>
@@ -123,11 +107,11 @@ class Region extends Component{
                     <td>{region.latitude}</td>
                     <td>{region.longitude}</td>
                     <td>{region.superiorId}</td>
-                    <td>
+                    {/* <td>
                       <Link className='operator' to={`user/parents/detail/${region.id}`}>详情</Link>
                       <Link className='operator' to={`user/parents/edit/${region.id}`}> 编辑</Link>
                       <button className='btn btn-primary' onClick={(e)=>{this.deleteRegion(region.id)}}>删除</button>
-                    </td>
+                    </td> */}
                 </tr>
               )
             })

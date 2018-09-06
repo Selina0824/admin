@@ -2,7 +2,7 @@ import Util from '../../util/util';
 const _util = new Util();
 let baseUrl = 'https://api.st.qischool.cn'
 class ServiceItemService {
-  // 获取家长列表
+  // 获取服务列表
   getServicesList(listParam) {
     let url = baseUrl + '/service/items',
       data = {};
@@ -13,13 +13,7 @@ class ServiceItemService {
     } else if(listParam.listType === 'search'){
       data.start = listParam.pageNum - 1;
       data[listParam.searchType] = listParam.searchKeyword;
-      //次级地区请求
-    } else {
-      data.size = listParam.size;
-      if(listParam.id){
-        data.superiorId = listParam.id;
-      }
-    }
+    } 
     if(listParam.size){
       data.size = listParam.size
     }
@@ -28,6 +22,18 @@ class ServiceItemService {
       url: url,
       data: data
     });
+  }
+
+  // 删除服务
+  deleteService(id){
+      let url = baseUrl + `/service/items/${id}`
+      return _util.request({
+          type:'delete',
+          url,
+          data:{
+              id
+          }
+      })
   }
 }
 export default ServiceItemService;

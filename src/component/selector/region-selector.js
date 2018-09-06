@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import './selector.css';
-import RegionService from '../../page/address/region.service';
+import RegionService from '../../page/address/region.service'
 import Util from '../../util/util';
 
 const _regionService = new RegionService();

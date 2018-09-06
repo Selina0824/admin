@@ -15,22 +15,6 @@ class UserParents extends Component{
   constructor(props){
     super(props);
     this.state= {
-        tabs:[{
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        }
-      ],
       data:[],
       pageNum:1,
       listType:'list'
@@ -55,7 +39,7 @@ class UserParents extends Component{
     }, err=> {
       this.setState({
         data:[]
-      })
+      });
       _util.errorTips(err);
     })
   }
@@ -83,8 +67,10 @@ class UserParents extends Component{
   deleteUser(id){
     if(window.confirm(`确定要删除 ${id} 吗？`)){
       _userService.deleteParents(id).then(res=>{
-        alert('删除成功')
-      },err=>_util.errorTips(err))
+        this.loadParentsList();
+      },err=>{
+        _util.errorTips(err)
+      })
     }
   }
   render(){
@@ -100,7 +86,7 @@ class UserParents extends Component{
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '家长管理' tabs = {this.state.tabs}>
+        <Title title = '家长管理'>
         <div className='page-header-right'>
             <Link to='/user/parents/add' className='btn btn-primary'>
               <i className='fa fa-plus'/>
@@ -120,7 +106,6 @@ class UserParents extends Component{
                     <td>{user.clazz?user.clazz.school.name:'—'}</td>
                     <td>{user.clazz?user.clazz.name:'—'}</td>
                     <td>{user.phone}</td>
-                    {/* <td>{new Date().toLocaleString()}</td> */}
                     <td>
                       <Link className='operator' to={`/user/parents/detail/${user.id}`}>详情 </Link>
                       <Link className='operator' to={`/user/parents/edit/${user.id}`}> 编辑</Link>

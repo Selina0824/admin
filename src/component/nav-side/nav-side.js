@@ -13,10 +13,8 @@ class NavSide extends React.Component{
             }
     };
     changeCollapse(e){
-      let tabName = e.target.name;
-      let tabValue = !e.target.value;
       this.setState({
-        [tabName]:tabValue
+        user:false
       })
     }
     render(){
@@ -84,7 +82,10 @@ class NavSide extends React.Component{
                        </Link>
                       <ul className="nav nav-second-level collapse in">
                           <li>
-                              <NavLink activeClassName='active-menu' to="/order/order-list">订单管理</NavLink>
+                              <NavLink activeClassName='active-menu' to="/order/order-list">订单列表</NavLink>
+                          </li>
+                          <li>
+                              <NavLink activeClassName='active-menu' to="/order/order-complaint">订单投诉</NavLink>
                           </li>
                       </ul>
                   </li>

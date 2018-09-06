@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import moment from 'moment';
+
 import Title from '../../component/page-title/title';
 import Pagination from '../../util/pagnination/pagnination';
 import TableList from '../../component/table-list/table-list';
@@ -16,7 +18,7 @@ class ServiceItem extends Component{
   constructor(props){
     super(props);
     this.state= {
-      list:[],
+      data:[],
       pageNum:1,
       firstLoading:true,
       listType:'list'
@@ -68,18 +70,22 @@ class ServiceItem extends Component{
     })
   }
   deleteService(id){
-    if(window.confirm(`确定要删除 ${id} 吗？`)){
-      console.log('delete service '+ id)
+    if(window.confirm(`确定要删除服务 ${id} 吗？`)){
+      _serviceItemService.deleteService(id).then(res=>{
+        // _util.successTips('删除成功！');
+        this.loadServicesList();
+      }
+      , err => _util.errorTips());
     }
   }
   render(){
     let tableHeads = [
       {name:'编号', width:'5%'},
-      {name:'服务类型', width:'10%'},
-      {name:'单价', width:'10%'},
-      {name:'数量', width:'10%'},
+      {name:'服务名称', width:'10%'},
       {name:'开始时间', width:'15%'},
       {name:'结束时间', width:'15%'},
+      {name:'单价', width:'10%'},
+      {name:'数量', width:'10%'},
       {name:'总价', width:'10%'},
       {name:'老师ID', width:'10%'},
       {name:'操作', width:'15%'}
@@ -87,30 +93,30 @@ class ServiceItem extends Component{
     return (
       <div id='page-wrapper'>
         <Title title = '服务项目管理'>
-          <div className='page-header-right'>
+          {/* <div className='page-header-right'>
             <Link to='/services/add' className='btn btn-primary'>
               <i className='fa fa-plus'/>
               <span>添加服务</span>
             </Link>
-          </div>
+          </div> */}
         </Title>
         <Search onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}}/>
         <TableList tableHeads = {tableHeads}>
           {
-            this.state.list.map((service,index)=> {
+            this.state.data.map((service,index)=> {
               return (
                 <tr key={index}>
                     <td>{service.id}</td>
                     <td>{service.name}</td>
-                    <td>￥{service.price}</td>
-                    <td>{service.id}</td>
-                    <td>{service.price}</td>
-                    <td>{service.price}</td>
-                    <td>￥{service.price}</td>
-                    <td>{service.id}</td>
+                    <td>{moment(service.startTime).format('YYYY-MM-DD/HH:mm')}</td>
+                    <td>{moment(service.endTime).format('YYYY-MM-DD/HH:mm')}</td>
+                    <td>￥{service.unitPrice}</td>
+                    <td>{service.amount}</td>
+                    <td>￥{service.totalPrice}</td>
+                    <td>{service.sellerId}</td>
                     <td>
-                      <Link className='operator' to={`user/parents/detail/${service.id}`}>详情</Link>
-                      <Link className='operator' to={`user/parents/edit/${service.id}`}> 编辑</Link>
+                      {/* <Link className='operator' to={`user/parents/detail/${service.id}`}>详情</Link>
+                      <Link className='operator' to={`user/parents/edit/${service.id}`}> 编辑</Link> */}
                       <button className='btn btn-primary' onClick={(e)=>{this.deleteService(service.id)}}>删除</button>
                     </td>
                 </tr>

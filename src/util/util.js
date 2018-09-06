@@ -20,7 +20,14 @@ class Util {
           if (401=== err.status) {
             this.doLogin();
           } else {
-            typeof reject === 'function' && reject(err.responseJSON.message);
+              let errMsg;
+              if(err.responseJSON){
+                  errMsg = err.responseJSON.message;
+              } else{
+                  errMsg = '请求服务器失败。'
+              }
+            // typeof reject === 'function' && reject(err.responseJSON.message);
+            typeof reject === 'function' && reject(errMsg);
           }
         }
       });

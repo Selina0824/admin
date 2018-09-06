@@ -19,20 +19,8 @@ class ServiceEdit extends Component{
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">
-            <div className="form-group">
-                <label htmlFor="name" className="col-md-2 control-label">名称</label>
-                <div className="col-md-5">
-                  <input type="text" className="form-control" name="name" id="name" placeholder="请输入服务名称" value=""/>
-                </div>
-              </div>
               <div className="form-group">
-                <label htmlFor="subtitle" className="col-md-2 control-label">描述</label>
-                <div className="col-md-5">
-                  <input type="text" className="form-control" name="subtitle" id="subtitle" placeholder="请输入服务描述" value=""/>
-                </div>
-              </div>
-              <div className="form-group">
-                <label className="col-md-2 control-label">所属服务</label>
+                <label className="col-md-2 control-label">服务类型</label>
                 <div className="col-md-3">
                   <select type="password" className="form-control cate-select col-md-5">
                     <option value="">请选择服务类别</option>
@@ -41,17 +29,30 @@ class ServiceEdit extends Component{
                   </select>
                 </div>
               </div>
+              <div className="form-group">
+                <label className="col-md-2 control-label">开始时间</label>
+                <div className="col-md-3">
+                  
+                </div>
+              </div>
+              <div className="form-group">
+                <label className="col-md-2 control-label">结束时间</label>
+                <div className="col-md-3">
+                  
+                </div>
+              </div>
               <div className="form-group"><label for="price" className="col-md-2 control-label">单价</label>
                 <div className="col-md-3">
                   <div className="input-group">
-                    <input type="number" className="form-control" id="price" placeholder="单价" name="price" value=""/>
+                    <input type="number" className="form-control" id="price" placeholder="单价" name="price"/>
                     <div className="input-group-addon">元</div>
                   </div>
                 </div>
               </div>
               <div className="form-group"><label for="stock" className="col-md-2 control-label">数量</label>
                 <div className="col-md-3">
-                  <div className="input-group"><input type="number" className="form-control" id="stock" name="stock" placeholder="数量" value=""/>
+                  <div className="input-group">
+                    <input type="number" className="form-control" id="stock" name="stock" placeholder="数量" value="1"/>
                     <div className="input-group-addon">小时</div>
                   </div>
                 </div>

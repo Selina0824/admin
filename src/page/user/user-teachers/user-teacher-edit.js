@@ -13,22 +13,6 @@ class TeacherEdit extends Component{
   constructor(props){
     super(props);
     this.state ={
-        tabs:[{
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        }
-      ],
       id: this.props.match.params.id,
       name:'',
       idNum:'',
@@ -124,7 +108,7 @@ class TeacherEdit extends Component{
   render(){
     return (
       <div id='page-wrapper'>
-        <Title title = {this.state.id?'老师管理 -- 编辑老师':'老师管理 -- 添加老师'} tabs = {this.state.tabs}/>
+        <Title title = {this.state.id?'老师管理 -- 编辑老师':'老师管理 -- 添加老师'}/>
         <div className="row">
           <div className="form-wrap col-md-12">
             <div className="form-horizontal">

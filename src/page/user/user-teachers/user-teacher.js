@@ -15,22 +15,6 @@ class UserTeacher extends Component{
   constructor(props){
     super(props);
     this.state= {
-        tabs:[{
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        },
-        {
-            active:true,
-            title:'首页',
-            href:'/'
-        }
-      ],
       data:[],
       pageNum:1,
       listType:'list'
@@ -83,7 +67,7 @@ class UserTeacher extends Component{
   deleteUser(id){
     if(window.confirm(`确定要删除老师 ${id} 吗？`)){
       _userService.deleteTeacher(id).then(res=>{
-        alert('删除成功')
+        this.loadTeacherList();
       },err=>_util.errorTips(err))
     }
   }
@@ -99,7 +83,7 @@ class UserTeacher extends Component{
     ]
     return (
       <div id='page-wrapper'>
-        <Title title = '老师管理' tabs = {this.state.tabs}>
+        <Title title = '老师管理'>
         <div className='page-header-right'>
             <Link to='/user/teacher/add' className='btn btn-primary'>
               <i className='fa fa-plus'/>
