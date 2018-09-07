@@ -7,11 +7,13 @@ import Util from '../../util/util';
 import UserService from '../user/user.service';
 import SchoolService from '../schools/school.service';
 import ServiceItemService from '../service-item/service-item.service';
+import OrderService from '../order/order.service';
 
 const _util = new Util();
 const _userService  = new UserService();
 const _schoolService = new SchoolService();
 const _serviceItemService = new ServiceItemService();
+const _orderService = new OrderService();
 
 class Home extends Component{
   constructor(props){
@@ -65,6 +67,14 @@ class Home extends Component{
             serviceCount: res.total
         })
     }, err=>_util.errorTips(err));
+
+    //获取订单数量
+    _orderService.getOrderList(listParam).then(res=>{
+        this.setState({
+            orderCount:res.total
+        })
+    },err=>_util.errorTips(err));
+
   }
   render(){
     return (
