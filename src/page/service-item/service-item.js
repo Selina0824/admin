@@ -110,9 +110,9 @@ class ServiceItem extends Component{
                     <td>{service.name}</td>
                     <td>{moment(service.startTime).format('YYYY-MM-DD/HH:mm')}</td>
                     <td>{moment(service.endTime).format('YYYY-MM-DD/HH:mm')}</td>
-                    <td>￥{service.unitPrice}</td>
+                    <td>￥{service.unitPrice}.00</td>
                     <td>{service.amount}</td>
-                    <td>￥{service.totalPrice}</td>
+                    <td>￥{service.totalPrice}.00</td>
                     <td>{service.sellerId}</td>
                     <td>
                       {/* <Link className='operator' to={`user/parents/detail/${service.id}`}>详情</Link>

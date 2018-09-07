@@ -8,7 +8,7 @@ import UserRouter from './page/user/user.router';
 import ServiceRouter from './page/service-item/service-router';
 import AddressRouter from './page/address/region.router';
 import SchoolRouter from './page/schools/school.router';
-import Order from './page/order/order';
+import OrderRouter from './page/order/order.router';
 import Login from './page/login/login';
 import ErrorPage from './page/error-page/error-page';
 
@@ -22,8 +22,7 @@ class App extends Component {
           <Route path='/user' component={UserRouter}/>
           <Route path='/school' component={SchoolRouter}/>
           <Route path='/services' component={ServiceRouter}/>
-          <Route path='/order/order-list' component={Order}/>
-          <Redirect exact from='/order' to = '/order/order-list'/>
+          <Route path='/order' component={OrderRouter}/>
   
           <Route path='/region' component={AddressRouter}/>
           <Route component={ErrorPage}/>

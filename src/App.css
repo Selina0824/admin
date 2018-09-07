@@ -60,3 +60,7 @@
     color: grey;
     font-weight: 600;
 }
+.white-background{
+    background-color: white;
+    padding-left: 20px;
+}
