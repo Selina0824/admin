@@ -7,13 +7,15 @@ import Util from '../../util/util';
 import UserService from '../user/user.service';
 import SchoolService from '../schools/school.service';
 import ServiceItemService from '../service-item/service-item.service';
-import OrderService from '../order/order.service';
+import OrderService from '../order/order-list/order.service';
+import ComplaintService from '../order/complaint-list/complaint.service';
 
 const _util = new Util();
 const _userService  = new UserService();
 const _schoolService = new SchoolService();
 const _serviceItemService = new ServiceItemService();
 const _orderService = new OrderService();
+const _complaintService = new ComplaintService();
 
 class Home extends Component{
   constructor(props){
@@ -72,6 +74,13 @@ class Home extends Component{
     _orderService.getOrderList(listParam).then(res=>{
         this.setState({
             orderCount:res.total
+        })
+    },err=>_util.errorTips(err));
+
+    // 获取投诉数量
+    _complaintService.getComplaintList(listParam).then(res=>{
+        this.setState({
+            complaintCount:res.total
         })
     },err=>_util.errorTips(err));
 

@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../../component/page-title/title';
 import Util from '../../../util/util';
-import RegionSelector from '../../../component/selector/region-selector';
 import SchoolSelector from '../../../component/selector/school-selector';
 import SchoolService from '../school.service';
-import RegionService from '../../address/region.service';
 
 const _schoolService = new SchoolService();
-const _regionService  = new RegionService();
 const _util = new Util();
 
 

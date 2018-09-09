@@ -27,7 +27,7 @@ class RegionSelector extends Component{
     let thirdRegionIdChange = this.state.thirdRegionId !== nextProps.thirdRegionId;
     
     // 如果只有两级地区
-    if(nextProps.thirdRegionId == 0){
+    if(nextProps.thirdRegionId === 0){
       //数据没有发生变化
       if(!firstRegionIdChange && !secondRegionIdChange){
         return;

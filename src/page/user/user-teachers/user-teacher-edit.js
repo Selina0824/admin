@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../../component/page-title/title';
 import Util from '../../../util/util';
 import ClassSelector from '../../../component/selector/clazz-selector';
@@ -54,12 +53,6 @@ class TeacherEdit extends Component{
     this.setState({
         schoolId
     })
-  }
-  onInputChange(e){
-    let inputValue = e.target.value;
-    this.setState({
-      name:inputValue
-    });
   }
   onSubmit(e){
     let userInfo = {
@@ -165,7 +158,7 @@ class TeacherEdit extends Component{
                     <div className="form-group">
                     <label  className="col-md-2 control-label">老师头像</label>
                     <div className='col-md-3'>
-                          <img className='avatar' src={this.state.avatar}/>
+                          <img className='avatar' alt='老师头像' src={this.state.avatar}/>
                     </div>
                   </div>
                   ):null

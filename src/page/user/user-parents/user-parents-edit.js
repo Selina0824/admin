@@ -57,12 +57,6 @@ class ParentsEdit extends Component{
         schoolId
     })
   }
-  onInputChange(e){
-    let inputValue = e.target.value;
-    this.setState({
-      name:inputValue
-    });
-  }
   onSubmit(e){
     let userInfo = {
       name: this.state.name,

@@ -1,10 +1,11 @@
-import Util from '../../util/util';
+import Util from '../../../util/util';
 const _util = new Util();
 let baseUrl = 'https://api.st.qischool.cn'
-class OrderService {
-  // 获取订单列表
-  getOrderList(listParam) {
-    let url = baseUrl + '/service/st-orders',
+
+class ComplaintService {
+  // 获取投诉列表
+  getComplaintList(listParam) {
+    let url = baseUrl + '/service/complaints',
       data = {};
       //一般请求
     if (listParam.listType === 'list') {
@@ -14,9 +15,6 @@ class OrderService {
       data.start = listParam.pageNum - 1;
       data[listParam.searchType] = listParam.searchKeyword;
     } 
-    if(listParam.size){
-      data.size = listParam.size
-    }
     return _util.request({
       type: 'get',
       url: url,
@@ -24,4 +22,4 @@ class OrderService {
     });
   }
 }
-export default OrderService;
+export default ComplaintService;

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../../component/page-title/title';
 import Util from '../../../util/util';
 import RegionSelector from '../../../component/selector/region-selector'

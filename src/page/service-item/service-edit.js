@@ -1,17 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../component/page-title/title';
-import Util from '../../util/util';
-import ServiceItemService from './service-item.service';
-
-const _serviceItemService  = new ServiceItemService();
-const _util = new Util();
-
-
 class ServiceEdit extends Component{
-  constructor(props){
-    super(props);
-  }
   render(){
     return (
       <div id='page-wrapper'>

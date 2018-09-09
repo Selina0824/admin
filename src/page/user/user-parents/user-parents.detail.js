@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../../component/page-title/title';
 import Util from '../../../util/util';
 import ClassSelector from '../../../component/selector/clazz-selector';
@@ -110,7 +109,7 @@ class ParentsDetail extends Component{
                     <div className="form-group">
                     <label  className="col-md-2 control-label">孩子头像</label>
                     <div className='col-md-3'>
-                          <img className='avatar' src={this.state.avatar}/>
+                          <img className='avatar' src={this.state.avatar} alt='孩子头像'/>
                     </div>
                   </div>
                   ):null

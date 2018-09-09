@@ -1,10 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Util from '../../util/util';
-import Admin from '../../service/admin.service';
 
 const _util = new Util();
-const _admin = new Admin();
 
 class NavTop extends React.Component{
     constructor(props){

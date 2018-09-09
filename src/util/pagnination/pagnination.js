@@ -4,9 +4,6 @@ import 'rc-pagination/dist/rc-pagination.min.css';
 
 // 通用分页组件
 class Pagination extends React.Component{
-  constructor(props){
-    super(props);
-  }
     render(){
         return(
             <div className='row'>

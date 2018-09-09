@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import{NavLink,Link} from 'react-router-dom';
 
 class Title extends Component {
-  constructor(props){
-    super(props)
-  }
   componentWillMount(){
     document.title = this.props.title + '- 亲子到家';
   }

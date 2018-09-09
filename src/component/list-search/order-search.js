@@ -34,7 +34,7 @@ class OrderSearch extends Component {
                   <select className="form-control"
                     name='searchType'
                     onChange = {(e)=>{this.onValueChange(e)}}>
-                    <option value="id">按订单号查询</option>
+                    <option value="id">{this.props.searchType}</option>
                     {/* <option value="status">按订单状态查询</option> */}
                   </select>
                 </div>

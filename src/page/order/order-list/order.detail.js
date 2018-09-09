@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import moment from 'moment';
-import Title from '../../component/page-title/title';
-import Util from '../../util/util';
+import Title from '../../../component/page-title/title';
+import Util from '../../../util/util';
 import OrderService from './order.service';
-import TableList from '../../component/table-list/table-list';
-import '../../App.css';
+import TableList from '../../../component/table-list/table-list';
+import '../../../App.css';
 
 const _util = new Util();
 const _orderService = new OrderService();

@@ -1,17 +1,7 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Title from '../../../component/page-title/title';
-import Util from '../../../util/util';
-// import ServiceItemService from '../../service/service-item.se/rvice';
-// 
-// const _serviceItemService  = new ServiceItemService();
-const _util = new Util();
-
 
 class RegionEdit extends Component{
-  constructor(props){
-    super(props);
-  }
   render(){
     return (
       <div id='page-wrapper'>

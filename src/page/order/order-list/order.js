@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
 
-import Title from '../../component/page-title/title';
-import Pagination from '../../util/pagnination/pagnination';
-import TableList from '../../component/table-list/table-list';
-import OrderSearch from '../../component/list-search/order-search';
-import Util from '../../util/util';
+import Title from '../../../component/page-title/title';
+import Pagination from '../../../util/pagnination/pagnination';
+import TableList from '../../../component/table-list/table-list';
+import OrderSearch from '../../../component/list-search/order-search';
+import Util from '../../../util/util';
 import OrderService from './order.service';
-import '../../App.css';
+import '../../../App.css';
 
 const _orderService = new OrderService();
 const _util = new Util();
@@ -83,7 +83,7 @@ class Order extends Component{
     return (
       <div id='page-wrapper'>
         <Title title = '订单列表'/>
-        <OrderSearch onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}}/>
+        <OrderSearch onSearch = {(searchType, searchKeyword)=>{this.onSearch(searchType, searchKeyword)}} searchType='按订单号查询'/>
         <TableList tableHeads = {tableHeads}>
           {
             this.state.data.map((order,index)=> {

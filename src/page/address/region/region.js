@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Title from '../../../component/page-title/title';
-import {Link} from 'react-router-dom';
 import Pagination from '../../../util/pagnination/pagnination';
 import TableList from '../../../component/table-list/table-list';
 import Util from '../../../util/util';
